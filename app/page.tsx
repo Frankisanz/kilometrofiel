@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArticleDirectory } from "@/app/components/ArticleDirectory";
+import { EditorialImage } from "@/app/components/EditorialImage";
 import { JsonLd } from "@/app/components/JsonLd";
 import { LongTailDirectory } from "@/app/components/LongTailDirectory";
+import { VideoFeature } from "@/app/components/VideoFeature";
 import { articlePath } from "@/lib/article-routing";
 import { articles } from "@/lib/articles";
+import { EDITORIAL_MEDIA } from "@/lib/editorial-media";
 import { LONG_TAIL_GUIDES } from "@/lib/long-tail-guides";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 
@@ -32,6 +35,7 @@ const categories = [
     description:
       "Arranque, testigos, temperatura, humo y descarga de batería explicados desde las señales observables.",
     href: "/diagnostico",
+    media: EDITORIAL_MEDIA.garage,
   },
   {
     number: "02 / PREVENCIÓN",
@@ -39,6 +43,7 @@ const categories = [
     description:
       "Planifica por edad, kilómetros, historial y uso. El manual siempre marca el intervalo específico.",
     href: "/mantenimiento",
+    media: EDITORIAL_MEDIA.dashboard,
   },
   {
     number: "03 / EQUIPAMIENTO",
@@ -46,6 +51,7 @@ const categories = [
     description:
       "Aprende qué especificaciones importan y cuándo una compra no va a resolver el problema.",
     href: "/guias-de-compra",
+    media: EDITORIAL_MEDIA.battery,
   },
   {
     number: "04 / CUMPLIMIENTO",
@@ -53,6 +59,7 @@ const categories = [
     description:
       "Checklist, baliza V16 y normas contrastadas con fuentes oficiales vigentes.",
     href: "/itv-y-normativa",
+    media: EDITORIAL_MEDIA.tire,
   },
 ] as const;
 
@@ -77,9 +84,9 @@ const homeSchema = {
 export default function Home() {
   return (
     <>
-      <section className="hero">
-        <div className="site-shell hero-grid">
-          <div>
+      <section className="hero hero-editorial">
+        <div className="site-shell hero-stage">
+          <div className="hero-message">
             <p className="eyebrow">Mantenimiento sin humo ni milagros</p>
             <h1>Cuida el coche que ya tienes.</h1>
             <p className="hero-copy">
@@ -97,21 +104,41 @@ export default function Home() {
                 Ver mantenimiento
               </Link>
             </div>
-          </div>
-          <aside className="odometer" aria-label="Dato sobre el parque móvil">
-            <div className="odometer-screen" aria-hidden="true">
-              {["1", "4", ",", "6", "A", "Ñ"].map((digit, index) => (
-                <span className="odometer-digit" key={`${digit}-${index}`}>
-                  {digit}
-                </span>
-              ))}
-            </div>
-            <p>
-              <strong>14,6 años</strong> era la edad media del parque móvil
-              español en 2025, según la DGT. Cuidar bien lo que ya circula es
-              una necesidad, no una rareza.
+            <p className="hero-promise">
+              Primero entendemos el síntoma. Después decidimos si puedes
+              comprobar algo, necesitas taller o no merece la pena comprar.
             </p>
-          </aside>
+          </div>
+          <div className="hero-visual">
+            <EditorialImage
+              className="hero-photo"
+              imageClassName="hero-photo-image"
+              loading="eager"
+              media={EDITORIAL_MEDIA.garage}
+              showCredit
+              sizes="(max-width: 920px) 100vw, 48vw"
+            />
+            <div
+              className="hero-stat-card"
+              aria-label="Edad media del parque móvil"
+            >
+              <span>Parque móvil español</span>
+              <strong>14,6</strong>
+              <small>
+                años de edad media en 2025,{" "}
+                <a
+                  href="https://www.dgt.es/comunicacion/noticias/20260727-usados-importados-compramos-lo-viejo/"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  según la DGT
+                </a>
+              </small>
+            </div>
+            <p className="hero-vertical-label" aria-hidden="true">
+              COCHES CON HISTORIA · RESPUESTAS DE HOY
+            </p>
+          </div>
         </div>
       </section>
 
@@ -123,7 +150,7 @@ export default function Home() {
         </ul>
       </div>
 
-      <section className="section">
+      <section className="section home-situations">
         <div className="site-shell">
           <div className="section-heading">
             <div>
@@ -136,15 +163,26 @@ export default function Home() {
               </p>
             </div>
           </div>
-          <div className="card-grid two">
-            {categories.map((category) => (
-              <article className="category-card" key={category.href}>
-                <span className="category-number">{category.number}</span>
-                <h3>{category.title}</h3>
-                <p>{category.description}</p>
-                <Link className="card-link" href={category.href}>
-                  Explorar respuestas
-                </Link>
+          <div className="category-mosaic">
+            {categories.map((category, index) => (
+              <article
+                className={`category-story category-story-${index + 1}`}
+                key={category.href}
+              >
+                <EditorialImage
+                  className="category-story-media"
+                  imageClassName="category-story-image"
+                  media={category.media}
+                  sizes="(max-width: 720px) 100vw, 50vw"
+                />
+                <div className="category-story-content">
+                  <span className="category-number">{category.number}</span>
+                  <h3>{category.title}</h3>
+                  <p>{category.description}</p>
+                  <Link className="card-link" href={category.href}>
+                    Explorar respuestas
+                  </Link>
+                </div>
               </article>
             ))}
           </div>
@@ -155,11 +193,11 @@ export default function Home() {
         <div className="site-shell">
           <div className="section-heading">
             <div>
-              <p className="eyebrow">Problemas que llegan al buscador</p>
+              <p className="eyebrow">Busca por lo que ves, oyes o hueles</p>
               <h2>Respuestas concretas para decisiones concretas.</h2>
               <p>
-                Priorizamos síntomas y contextos reales, incluidas búsquedas
-                long tail con menos competencia y una intención más clara.
+                Priorizamos síntomas y contextos reales: desde un clic al girar
+                la llave hasta humo, temperatura o un testigo que parpadea.
               </p>
             </div>
             <Link className="button button-secondary" href="/diagnostico">
@@ -220,6 +258,32 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="section video-section">
+        <div className="site-shell video-layout">
+          <VideoFeature />
+          <div className="video-copy">
+            <p className="eyebrow">Aula de garaje</p>
+            <h2>Una explicación visual cuando las siglas no ayudan.</h2>
+            <p>
+              EFB y AGM no son simples etiquetas comerciales. El tipo de
+              batería debe encajar con el sistema Start-Stop, la gestión de
+              carga y la especificación del vehículo.
+            </p>
+            <ul className="editorial-checklist">
+              <li>Vídeo técnico seleccionado, no contenido patrocinado.</li>
+              <li>YouTube no recibe datos hasta que decides reproducirlo.</li>
+              <li>Nuestra guía escrita aporta compatibilidad y pasos propios.</li>
+            </ul>
+            <Link
+              className="button button-dark"
+              href="/mantenimiento/como-elegir-bateria-coche"
+            >
+              Abrir la guía de baterías
+            </Link>
+          </div>
+        </div>
+      </section>
+
       <section className="section">
         <div className="site-shell">
           <div className="section-heading">
@@ -227,8 +291,8 @@ export default function Home() {
               <p className="eyebrow">Búsquedas muy concretas</p>
               <h2>La frase que escribirías cuando algo raro ocurre.</h2>
               <p>
-                Atacamos consultas long tail con menos competencia, pero cada
-                página debe resolver un caso distinto y aportar valor real.
+                Cada página resuelve una situación distinta con contexto,
+                señales de riesgo y un siguiente paso que puedas aplicar.
               </p>
             </div>
             <Link className="button button-dark" href="/respuestas">
@@ -240,7 +304,7 @@ export default function Home() {
       </section>
 
       <section className="section-tight">
-        <div className="site-shell recommendation-cta">
+        <div className="site-shell recommendation-cta recommendation-cta-visual">
           <div>
             <p className="eyebrow">Selección transparente</p>
             <h2>Si ya sabes qué herramienta necesitas, compara fichas concretas.</h2>
@@ -253,6 +317,12 @@ export default function Home() {
           <Link className="button button-primary" href="/recomendaciones">
             Ver recomendaciones
           </Link>
+          <EditorialImage
+            className="recommendation-visual"
+            imageClassName="recommendation-visual-image"
+            media={EDITORIAL_MEDIA.dashboard}
+            sizes="(max-width: 920px) 100vw, 30vw"
+          />
         </div>
       </section>
 

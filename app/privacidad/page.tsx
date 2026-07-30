@@ -21,7 +21,7 @@ export default function PrivacyPage() {
       <div className="site-shell legal-layout">
         <section>
           <p>
-            <strong>Última actualización:</strong> 29 de julio de 2026.
+            <strong>Última actualización:</strong> 30 de julio de 2026.
           </p>
 
           <h2>1. Responsable</h2>
@@ -57,6 +57,12 @@ export default function PrivacyPage() {
               Datos técnicos mínimos asociados a la conexión y seguridad, como
               dirección IP, fecha, URL solicitada, agente de usuario y registros
               de error, gestionados por la infraestructura de alojamiento.
+            </li>
+            <li>
+              Si decides reproducir el vídeo externo, YouTube puede recibir
+              datos técnicos de la conexión directamente desde tu navegador.
+              Kilómetro Fiel no recibe ese historial ni carga el reproductor
+              antes de tu acción.
             </li>
           </ul>
 
@@ -113,6 +119,12 @@ export default function PrivacyPage() {
             del Espacio Económico Europeo, si se produjera, debe ampararse en
             una decisión de adecuación, cláusulas contractuales tipo u otro
             mecanismo válido.
+          </p>
+          <p>
+            YouTube, servicio de Google, actúa conforme a sus propias políticas
+            cuando pulsas para cargar el vídeo. Puedes evitar esa conexión
+            simplemente no reproduciéndolo y continuar usando el resto de la
+            web con normalidad.
           </p>
 
           <h2>6. Tus derechos</h2>

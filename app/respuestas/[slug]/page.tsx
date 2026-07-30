@@ -12,6 +12,7 @@ import {
   LONG_TAIL_GUIDES,
   type LongTailGuide,
 } from "@/lib/long-tail-guides";
+import { getArticleMedia } from "@/lib/editorial-media";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 
 type LongTailPageProps = {
@@ -28,6 +29,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const guide = getLongTailGuide(slug);
   if (!guide) return {};
+  const media = getArticleMedia(guide.hub.slug);
 
   return {
     title: guide.seoTitle,
@@ -40,7 +42,7 @@ export async function generateMetadata({
       url: longTailPath(guide),
       publishedTime: guide.updatedAt,
       modifiedTime: guide.updatedAt,
-      images: ["/og.png"],
+      images: [media.src],
     },
   };
 }
@@ -57,6 +59,7 @@ export default async function LongTailAnswerPage({
     .filter((item): item is LongTailGuide => Boolean(item))
     .slice(0, 3);
   const canonicalPath = longTailPath(guide);
+  const media = getArticleMedia(guide.hub.slug);
 
   const articleSchema = {
     "@context": "https://schema.org",
@@ -67,6 +70,7 @@ export default async function LongTailAnswerPage({
     dateModified: guide.updatedAt,
     inLanguage: "es-ES",
     mainEntityOfPage: `${SITE_URL}${canonicalPath}`,
+    image: `${SITE_URL}${media.src}`,
     author: {
       "@type": "Organization",
       name: `Equipo editorial de ${SITE_NAME}`,
@@ -124,6 +128,7 @@ export default async function LongTailAnswerPage({
         eyebrow={`Respuesta específica · ${guide.cluster}`}
         title={guide.query}
         description={guide.description}
+        media={media}
         breadcrumbs={[
           { label: "Respuestas específicas", href: "/respuestas" },
           { label: guide.query },

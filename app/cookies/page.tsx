@@ -20,7 +20,7 @@ export default function CookiesPage() {
       <div className="site-shell legal-layout">
         <section>
           <p>
-            <strong>Última actualización:</strong> 29 de julio de 2026.
+            <strong>Última actualización:</strong> 30 de julio de 2026.
           </p>
 
           <h2>1. Situación actual</h2>
@@ -50,7 +50,18 @@ export default function CookiesPage() {
             identifican antes de salir de esta web.
           </p>
 
-          <h2>4. Cómo controlar el almacenamiento</h2>
+          <h2>4. Vídeos externos bajo demanda</h2>
+          <p>
+            La portada incluye un vídeo técnico alojado en YouTube. La web no
+            descarga el reproductor ni contacta con YouTube al abrir la página.
+            Solo se crea la conexión cuando pulsas expresamente
+            «Reproducir vídeo». A partir de ese momento se aplican las políticas
+            de Google y YouTube, que pueden tratar datos técnicos, usar
+            almacenamiento del navegador o solicitar tus preferencias de
+            consentimiento.
+          </p>
+
+          <h2>5. Cómo controlar el almacenamiento</h2>
           <p>
             Puedes borrar cookies, datos de sitios y caché desde la
             configuración de privacidad de tu navegador. Eliminar la caché de
@@ -58,7 +69,7 @@ export default function CookiesPage() {
             conexión, pero no impide navegar con conexión.
           </p>
 
-          <h2>5. Cambios futuros</h2>
+          <h2>6. Cambios futuros</h2>
           <p>
             Si incorporamos Google AdSense, analítica u otra tecnología no
             necesaria, actualizaremos esta política e implementaremos el

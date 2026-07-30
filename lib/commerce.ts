@@ -23,7 +23,7 @@ export const AMAZON_AFFILIATE_DISCLOSURE =
   "En calidad de Afiliado de Amazon, obtengo ingresos por las compras adscritas que cumplen los requisitos aplicables.";
 
 export const EDITORIAL_INDEPENDENCE_NOTICE =
-  "Kilómetro Fiel selecciona y ordena sus recomendaciones por utilidad, seguridad, compatibilidad y claridad técnica. Una futura relación de afiliación no permitirá a una tienda o fabricante revisar, comprar o alterar nuestras conclusiones. Cuando no sea necesario adquirir una herramienta, también lo indicaremos.";
+  "Kilómetro Fiel selecciona y ordena sus recomendaciones por utilidad, seguridad, compatibilidad y claridad técnica. La relación de afiliación no permite a Amazon ni a los fabricantes revisar, comprar o alterar nuestras conclusiones. Cuando no sea necesario adquirir una herramienta, también lo indicaremos.";
 
 export const AFFILIATE_STATUS = {
   enabled: affiliateEnabled,

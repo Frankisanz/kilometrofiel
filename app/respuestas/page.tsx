@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { LongTailDirectory } from "@/app/components/LongTailDirectory";
 import { PageHero } from "@/app/components/PageHero";
+import { EDITORIAL_MEDIA } from "@/lib/editorial-media";
 import { LONG_TAIL_GUIDES } from "@/lib/long-tail-guides";
 
 export const metadata: Metadata = {
@@ -14,9 +15,10 @@ export default function AnswersDirectoryPage() {
   return (
     <>
       <PageHero
-        eyebrow="Consultas long tail"
+        eyebrow="Situaciones concretas"
         title="Cuando el problema es muy concreto, la respuesta también debe serlo."
         description="Estas páginas resuelven situaciones completas, no simples variaciones de una palabra clave. Cada una enlaza a su guía principal para ampliar contexto."
+        media={EDITORIAL_MEDIA.dashboard}
         breadcrumbs={[{ label: "Respuestas específicas" }]}
       />
       <section className="section">

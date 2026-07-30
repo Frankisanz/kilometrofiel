@@ -3,6 +3,7 @@ import { ArticleDirectory } from "@/app/components/ArticleDirectory";
 import { LongTailDirectory } from "@/app/components/LongTailDirectory";
 import { PageHero } from "@/app/components/PageHero";
 import { getArticlesByCategory } from "@/lib/articles";
+import { EDITORIAL_MEDIA } from "@/lib/editorial-media";
 import { LONG_TAIL_GUIDES } from "@/lib/long-tail-guides";
 
 export const metadata: Metadata = {
@@ -20,6 +21,7 @@ export default function DiagnosisDirectoryPage() {
         eyebrow="Diagnóstico por síntomas"
         title="Empieza por lo que hace el coche, no por la pieza."
         description="Una misma señal admite varias causas. Observa, descarta riesgos y reúne datos antes de comprar o desmontar."
+        media={EDITORIAL_MEDIA.garage}
         breadcrumbs={[{ label: "Diagnóstico" }]}
       />
       <section className="section">
@@ -32,7 +34,7 @@ export default function DiagnosisDirectoryPage() {
           <div className="section-heading" style={{ marginTop: "5rem" }}>
             <div>
               <p className="eyebrow">Casos muy concretos</p>
-              <h2>Respuestas para búsquedas long tail.</h2>
+              <h2>Situaciones que necesitan una respuesta propia.</h2>
               <p>
                 Son situaciones distintas, no páginas duplicadas: cada respuesta
                 añade contexto, señales y un siguiente paso propio.

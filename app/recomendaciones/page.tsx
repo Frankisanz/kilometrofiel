@@ -5,6 +5,7 @@ import {
   AMAZON_AFFILIATE_DISCLOSURE,
   COMMERCIAL_CATEGORIES,
 } from "@/lib/commerce";
+import { EDITORIAL_MEDIA } from "@/lib/editorial-media";
 
 export const metadata: Metadata = {
   title: "Herramientas recomendadas para coches veteranos",
@@ -20,6 +21,7 @@ export default function RecommendationsPage() {
         eyebrow="Recomendaciones transparentes"
         title="Herramientas concretas, ordenadas por la tarea que resuelven."
         description="No elegimos por el número más grande ni por una comisión. Explicamos compatibilidad, límites y cuándo no merece la pena comprar."
+        media={EDITORIAL_MEDIA.battery}
         breadcrumbs={[{ label: "Recomendaciones" }]}
       />
       <section className="section">

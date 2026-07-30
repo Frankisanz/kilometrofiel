@@ -17,6 +17,7 @@ import {
   getArticleBySlug,
   getRelatedArticles,
 } from "@/lib/articles";
+import { getArticleMedia } from "@/lib/editorial-media";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 import { LONG_TAIL_GUIDES } from "@/lib/long-tail-guides";
 import type { CommerceCategoryId } from "@/lib/commerce";
@@ -54,6 +55,7 @@ export async function generateMetadata({
   }
 
   const path = articlePath(article);
+  const media = getArticleMedia(article.slug, article.category);
 
   return {
     title: article.seoTitle,
@@ -67,13 +69,13 @@ export async function generateMetadata({
       publishedTime: article.publishedAt,
       modifiedTime: article.updatedAt,
       section: CATEGORY_LABELS[article.category],
-      images: ["/og.png"],
+      images: [media.src],
     },
     twitter: {
       card: "summary_large_image",
       title: article.seoTitle,
       description: article.description,
-      images: ["/og.png"],
+      images: [media.src],
     },
   };
 }
@@ -105,6 +107,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   const categoryLabel = CATEGORY_LABELS[article.category];
   const categoryHref = categoryPath(article.category);
   const commercialCategory = commercialCategoryByArticle[article.slug];
+  const media = getArticleMedia(article.slug, article.category);
 
   const articleSchema = {
     "@context": "https://schema.org",
@@ -129,7 +132,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         url: `${SITE_URL}/icons/icon-512.png`,
       },
     },
-    image: `${SITE_URL}/og.png`,
+    image: `${SITE_URL}${media.src}`,
   };
 
   const faqSchema = {
@@ -176,6 +179,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         eyebrow={article.eyebrow}
         title={article.title}
         description={article.summary}
+        media={media}
         breadcrumbs={[
           { label: categoryLabel, href: categoryHref },
           { label: article.title },

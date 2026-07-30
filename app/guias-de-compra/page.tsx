@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArticleDirectory } from "@/app/components/ArticleDirectory";
 import { PageHero } from "@/app/components/PageHero";
 import { getArticlesByCategory } from "@/lib/articles";
+import { EDITORIAL_MEDIA } from "@/lib/editorial-media";
 
 export const metadata: Metadata = {
   title: "Guías para elegir herramientas de coche sin equivocarse",
@@ -19,6 +20,7 @@ export default function BuyingGuidesPage() {
         eyebrow="Equipamiento"
         title="Compra por necesidad y compatibilidad, no por la cifra más grande."
         description="Explicamos qué especificaciones importan, qué no resuelve cada aparato y qué comprobar antes de abrir Amazon."
+        media={EDITORIAL_MEDIA.battery}
         breadcrumbs={[{ label: "Guías de compra" }]}
       />
       <section className="section">

@@ -84,6 +84,41 @@ export function SiteFooter() {
               : "Actualmente no hay enlaces de afiliado activos. Si se incorporan, se identificarán con claridad."}
           </span>
         </div>
+        <p className="footer-photo-credit">
+          Fotografías editoriales:{" "}
+          <a
+            href="https://unsplash.com/@dancrile"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Dan Crile
+          </a>
+          ,{" "}
+          <a
+            href="https://unsplash.com/@tanyabarrow"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Tanya Barrow
+          </a>
+          ,{" "}
+          <a
+            href="https://unsplash.com/@noorvoux"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Frankie Cordoba
+          </a>{" "}
+          y{" "}
+          <a
+            href="https://unsplash.com/@wesleyphotography"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Wesley Tingey
+          </a>{" "}
+          en Unsplash.
+        </p>
       </div>
     </footer>
   );
