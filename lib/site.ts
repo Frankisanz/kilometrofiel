@@ -27,7 +27,9 @@ export type LegalOwner = {
 
 export const SITE_NAME = "Kilómetro Fiel";
 export const SITE_TAGLINE = "Cuida el coche que ya tienes.";
-export const SITE_URL = "https://kilometrofiel.es";
+// Keep every canonical, sitemap and structured-data URL on the production
+// hostname that Vercel serves (the apex domain redirects here).
+export const SITE_URL = "https://www.kilometrofiel.es";
 export const SITE_LOCALE = "es-ES";
 
 export const MAIN_NAVIGATION = [
