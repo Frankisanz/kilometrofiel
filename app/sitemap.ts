@@ -25,12 +25,13 @@ const staticRoutes = [
 ] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = new Date("2026-07-29T00:00:00.000Z");
+  const originalPublication = new Date("2026-07-29T00:00:00.000Z");
+  const homepageUpdated = new Date("2026-08-10T00:00:00.000Z");
 
   return [
     ...staticRoutes.map((route) => ({
       url: `${SITE_URL}${route}`,
-      lastModified,
+      lastModified: route === "" ? homepageUpdated : originalPublication,
       changeFrequency: route === "" ? ("weekly" as const) : ("monthly" as const),
       priority: route === "" ? 1 : route.startsWith("/herramientas") ? 0.8 : 0.7,
     })),

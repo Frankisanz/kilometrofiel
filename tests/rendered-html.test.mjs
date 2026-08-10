@@ -47,6 +47,28 @@ test("renders the finished Spanish homepage with core SEO", async () => {
   assert.doesNotMatch(output, /codex-preview|Building your site|react-loading-skeleton/i);
 });
 
+test("links priority discovery pages directly from the homepage", async () => {
+  const output = await html("/");
+  const priorityPaths = [
+    "/guias-de-compra/cargador-mantenedor-bateria",
+    "/mantenimiento/neumaticos-dot-desgaste-presion",
+    "/itv-y-normativa/baliza-v16-conectada-certificada",
+    "/respuestas/temperatura-sube-atasco-baja-carretera",
+  ];
+
+  for (const pathname of priorityPaths) {
+    assert.match(output, new RegExp(`href="${pathname}"`));
+    const target = await html(pathname);
+    assert.match(
+      target,
+      new RegExp(
+        `href="https://www\\.kilometrofiel\\.es${pathname}"`,
+      ),
+    );
+    assert.doesNotMatch(target, /<meta[^>]*content="noindex/i);
+  }
+});
+
 test("renders every main editorial and trust route", async () => {
   const routes = [
     "/diagnostico",
