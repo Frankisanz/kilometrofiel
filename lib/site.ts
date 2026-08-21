@@ -30,6 +30,12 @@ export const SITE_TAGLINE = "Cuida el coche que ya tienes.";
 export const SITE_URL = "https://kilometrofiel.es";
 export const SITE_LOCALE = "es-ES";
 
+export const ADSENSE_CLIENT =
+  process.env.NEXT_PUBLIC_ADSENSE_CLIENT || "ca-pub-5290446197600060";
+export const ADSENSE_PUB_ID =
+  process.env.NEXT_PUBLIC_ADSENSE_PUB_ID || "pub-5290446197600060";
+
+
 export const MAIN_NAVIGATION = [
   { label: "Inicio", href: "/" },
   { label: "Mantenimiento", href: "/mantenimiento" },

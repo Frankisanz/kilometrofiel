@@ -4,7 +4,7 @@ import { PageHero } from "@/app/components/PageHero";
 export const metadata: Metadata = {
   title: "Política de cookies",
   description:
-    "Información sobre cookies, almacenamiento local y funcionamiento PWA de Kilómetro Fiel.",
+    "Información sobre cookies, almacenamiento local, verificación de AdSense y funcionamiento PWA de Kilómetro Fiel.",
   alternates: { canonical: "/cookies" },
 };
 
@@ -14,76 +14,89 @@ export default function CookiesPage() {
       <PageHero
         eyebrow="Almacenamiento y navegador"
         title="Política de cookies"
-        description="Actualmente no usamos cookies publicitarias ni de analítica en Kilómetro Fiel."
+        description="Transparencia sobre almacenamiento, script de verificación de Google AdSense y gestión de cookies."
         breadcrumbs={[{ label: "Cookies" }]}
       />
       <div className="site-shell legal-layout">
         <section>
           <p>
-            <strong>Última actualización:</strong> 30 de julio de 2026.
+            <strong>Última actualización:</strong> 21 de agosto de 2026.
           </p>
 
-          <h2>1. Situación actual</h2>
+          <h2>1. Situación actual y Google AdSense</h2>
           <p className="answer-box">
-            Kilómetro Fiel no instala actualmente cookies de analítica,
-            personalización publicitaria ni seguimiento de afiliación en su
-            propio dominio. Por ello no mostramos un panel de consentimiento
-            para categorías que todavía no existen.
+            El script oficial de Google AdSense está incorporado en la cabecera
+            de la web con el propósito exclusivo de verificación de titularidad,
+            revisión técnica del dominio por parte de Google y preparación de la
+            infraestructura. Actualmente <strong>no se muestran anuncios</strong>,
+            no están activos los anuncios automáticos ni se insertan banners en
+            el contenido.
+          </p>
+          <p>
+            Mientras la publicidad no se encuentre activa, Kilómetro Fiel no
+            utiliza cookies de perfilado ni genera identificadores publicitarios
+            para mostrar anuncios a los usuarios en su propio dominio.
           </p>
 
-          <h2>2. PWA y caché sin conexión</h2>
+          <h2>2. Plataforma de consentimiento (CMP) previa a la activación</h2>
           <p>
-            La web puede instalarse como aplicación. Su service worker guarda
-            archivos públicos y páginas visitadas en la caché del navegador
-            para mejorar la velocidad y ofrecer una pantalla sin conexión. Esta
-            caché no crea un perfil, no contiene un identificador publicitario y
-            puede borrarse desde los ajustes del navegador o desinstalando la
-            aplicación.
+            Antes de activar la difusión de anuncios y la publicidad
+            personalizada dirigida a usuarios del Espacio Económico Europeo
+            (EEE) y del Reino Unido, Kilómetro Fiel integrará una solución de
+            gestión de consentimiento (CMP) certificada por Google y alineada con
+            el estándar IAB TCF (Transparency and Consent Framework).
           </p>
-
-          <h2>3. Enlaces a terceros</h2>
           <p>
-            Algunos enlaces llevan a sitios externos, incluida Amazon. Pulsar
-            el enlace no instala una cookie de ese tercero en
-            kilometrofiel.es; al llegar al sitio externo se aplican su política
-            y sus opciones de consentimiento. Los enlaces de afiliado se
-            identifican antes de salir de esta web.
-          </p>
-
-          <h2>4. Vídeos externos bajo demanda</h2>
-          <p>
-            La portada incluye un vídeo técnico alojado en YouTube. La web no
-            descarga el reproductor ni contacta con YouTube al abrir la página.
-            Solo se crea la conexión cuando pulsas expresamente
-            «Reproducir vídeo». A partir de ese momento se aplican las políticas
-            de Google y YouTube, que pueden tratar datos técnicos, usar
-            almacenamiento del navegador o solicitar tus preferencias de
-            consentimiento.
-          </p>
-
-          <h2>5. Cómo controlar el almacenamiento</h2>
-          <p>
-            Puedes borrar cookies, datos de sitios y caché desde la
-            configuración de privacidad de tu navegador. Eliminar la caché de
-            la PWA puede hacer que las páginas dejen de estar disponibles sin
-            conexión, pero no impide navegar con conexión.
-          </p>
-
-          <h2>6. Cambios futuros</h2>
-          <p>
-            Si incorporamos Google AdSense, analítica u otra tecnología no
-            necesaria, actualizaremos esta política e implementaremos el
-            mecanismo de consentimiento exigible antes de activarla. Aceptar y
-            rechazar deberán ser opciones equivalentes cuando se solicite el
-            consentimiento, conforme a la{" "}
+            Dicho mecanismo permitirá a los visitantes aceptar, rechazar o
+            configurar libremente el tratamiento de cookies e identificadores
+            publicitarios con opciones equivalentes, conforme a las directrices
+            de la{" "}
             <a
               href="https://www.aepd.es/guias/guia-cookies.pdf"
               rel="noopener noreferrer"
               target="_blank"
             >
-              orientación de la AEPD
-            </a>
-            .
+              Agencia Española de Protección de Datos (AEPD)
+            </a>{" "}
+            y el Reglamento General de Protección de Datos (RGPD).
+          </p>
+
+          <h2>3. PWA y caché sin conexión</h2>
+          <p>
+            La web puede instalarse como aplicación web progresiva (PWA). Su
+            service worker guarda recursos estáticos públicos y páginas
+            visitadas en la caché del navegador para mejorar el rendimiento y
+            permitir la consulta sin conexión. Esta caché no crea perfiles de
+            usuario ni contiene identificadores de seguimiento publicitario, y
+            puede eliminarse desde los ajustes del navegador.
+          </p>
+
+          <h2>4. Enlaces a terceros y afiliación</h2>
+          <p>
+            Determinados enlaces dirigen a comercios externos, como Amazon.
+            Hacer clic en un enlace de afiliado no instala cookies de ese
+            tercero en kilometrofiel.es; al acceder a la plataforma externa se
+            aplican su propia política de privacidad y sus herramientas de
+            consentimiento. Todos los enlaces comerciales están debidamente
+            identificados.
+          </p>
+
+          <h2>5. Vídeos externos bajo demanda</h2>
+          <p>
+            La portada incluye un vídeo técnico alojado en YouTube. La web no
+            carga el reproductor ni conecta con los servidores de YouTube de
+            forma automática al entrar. Solo se establece la conexión cuando
+            pulsas expresamente «Reproducir vídeo», momento en el que se aplican
+            las políticas y opciones de consentimiento de Google y YouTube.
+          </p>
+
+          <h2>6. Cómo gestionar o revocar el almacenamiento</h2>
+          <p>
+            Puedes restringir, bloquear o eliminar las cookies y los datos de
+            sitio en cualquier momento mediante la configuración de tu
+            navegador web (Chrome, Firefox, Safari, Edge, etc.). La eliminación
+            de los datos locales del navegador no impedirá la navegación por los
+            contenidos abiertos de Kilómetro Fiel.
           </p>
         </section>
       </div>

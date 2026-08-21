@@ -1,4 +1,6 @@
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 import test from "node:test";
 
 const workerUrl = new URL("../dist/server/index.js", import.meta.url);
@@ -12,10 +14,30 @@ async function request(pathname = "/") {
     }),
     {
       ASSETS: {
-        fetch: async (request) =>
-          new Response(`Asset not available in unit test: ${request.url}`, {
-            status: 404,
-          }),
+        fetch: async (req) => {
+          const url = new URL(req.url);
+          try {
+            const filePath = join(process.cwd(), "public", url.pathname);
+            const content = await readFile(filePath);
+            const ext = url.pathname.split(".").pop();
+            const contentType =
+              ext === "txt"
+                ? "text/plain; charset=utf-8"
+                : ext === "svg"
+                ? "image/svg+xml"
+                : ext === "webmanifest"
+                ? "application/manifest+json"
+                : "application/octet-stream";
+            return new Response(content, {
+              status: 200,
+              headers: { "content-type": contentType },
+            });
+          } catch {
+            return new Response(`Asset not available in unit test: ${req.url}`, {
+              status: 404,
+            });
+          }
+        },
       },
     },
     {
@@ -32,7 +54,7 @@ async function html(pathname) {
   return response.text();
 }
 
-test("renders the finished Spanish homepage with core SEO", async () => {
+test("renders the finished Spanish homepage with core SEO and AdSense script", async () => {
   const output = await html("/");
 
   assert.match(output, /<html[^>]*lang="es"/i);
@@ -44,10 +66,15 @@ test("renders the finished Spanish homepage with core SEO", async () => {
     output,
     /href="https:\/\/kilometrofiel\.es\/manifest\.webmanifest"/i,
   );
+  assert.match(
+    output,
+    /pagead2\.googlesyndication\.com\/pagead\/js\/adsbygoogle\.js\?client=ca-pub-5290446197600060/i,
+  );
+  assert.match(output, /crossorigin="anonymous"/i);
   assert.doesNotMatch(output, /codex-preview|Building your site|react-loading-skeleton/i);
 });
 
-test("renders every main editorial and trust route", async () => {
+test("renders every main editorial and trust route with AdSense verification script", async () => {
   const routes = [
     "/diagnostico",
     "/mantenimiento",
@@ -67,7 +94,22 @@ test("renders every main editorial and trust route", async () => {
     const output = await html(route);
     assert.equal((output.match(/<h1\b/gi) ?? []).length, 1, `${route} h1`);
     assert.match(output, new RegExp(`href="https://kilometrofiel\\.es${route}"`));
+    assert.match(
+      output,
+      /pagead2\.googlesyndication\.com\/pagead\/js\/adsbygoogle\.js\?client=ca-pub-5290446197600060/i,
+    );
   }
+});
+
+test("serves valid ads.txt file with official Google Publisher ID", async () => {
+  const response = await request("/ads.txt");
+  assert.equal(response.status, 200);
+  assert.match(response.headers.get("content-type") ?? "", /^text\/plain\b/i);
+  const text = await response.text();
+  assert.match(
+    text,
+    /^google\.com,\s*pub-5290446197600060,\s*DIRECT,\s*f08c47fec0942fa0\s*$/m,
+  );
 });
 
 test("uses only direct, disclosed Amazon product links with kmfiel-21", async () => {
@@ -84,6 +126,20 @@ test("uses only direct, disclosed Amazon product links with kmfiel-21", async ()
     output,
     /rel="sponsored nofollow noopener noreferrer"/i,
   );
+});
+
+test("publishes transparent legal, privacy and cookies policies reflecting AdSense state", async () => {
+  const cookies = await html("/cookies");
+  assert.match(cookies, /Google AdSense/i);
+  assert.match(cookies, /verificación de titularidad/i);
+  assert.match(cookies, /no se muestran anuncios/i);
+  assert.match(cookies, /CMP|plataforma de gestión de consentimiento/i);
+
+  const privacy = await html("/privacidad");
+  assert.match(privacy, /Google AdSense/i);
+  assert.match(privacy, /proveedor tecnológico/i);
+  assert.match(privacy, /consentimiento previo y explícito/i);
+  assert.match(privacy, /Francisco Javier Sanchez Fuentes/i);
 });
 
 test("renders a complete main article with safety, FAQ and sources", async () => {

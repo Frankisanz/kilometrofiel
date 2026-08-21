@@ -2,8 +2,9 @@ import type { Metadata, Viewport } from "next";
 import { SiteFooter } from "@/app/components/SiteFooter";
 import { SiteHeader } from "@/app/components/SiteHeader";
 import { ServiceWorkerRegistration } from "@/app/components/ServiceWorkerRegistration";
-import { SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/lib/site";
+import { ADSENSE_CLIENT, SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/lib/site";
 import "./globals.css";
+
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -93,6 +94,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
+      <head>
+        <script
+          async
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`}
+          crossOrigin="anonymous"
+        />
+      </head>
       <body>
         <a className="skip-link" href="#contenido">
           Saltar al contenido
