@@ -63,6 +63,37 @@ const categories = [
   },
 ] as const;
 
+const priorityGuides = [
+  {
+    eyebrow: "Batería",
+    title: "Cargador o mantenedor: cuál necesitas",
+    description:
+      "Distingue carga y mantenimiento, comprueba AGM/EFB y evita modos incompatibles antes de conectar el equipo.",
+    href: "/guias-de-compra/cargador-mantenedor-bateria",
+  },
+  {
+    eyebrow: "Neumáticos",
+    title: "Cómo leer DOT, desgaste y presión",
+    description:
+      "Revisa edad, dibujo, daños y presión en frío sin confundir el mínimo legal con un neumático en buen estado.",
+    href: "/mantenimiento/neumaticos-dot-desgaste-presion",
+  },
+  {
+    eyebrow: "Seguridad vial",
+    title: "Comprueba si una baliza V16 está certificada",
+    description:
+      "Verifica marca, modelo, certificado, conectividad y caducidad en la fuente oficial antes de comprar.",
+    href: "/itv-y-normativa/baliza-v16-conectada-certificada",
+  },
+  {
+    eyebrow: "Refrigeración",
+    title: "La temperatura sube en atascos y baja en carretera",
+    description:
+      "Qué indica este patrón, qué observar con el motor frío y cuándo debes detenerte para evitar daños.",
+    href: "/respuestas/temperatura-sube-atasco-baja-carretera",
+  },
+] as const;
+
 const homeSchema = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
@@ -183,6 +214,36 @@ export default function Home() {
                     Explorar respuestas
                   </Link>
                 </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-tight" aria-labelledby="guias-prioritarias">
+        <div className="site-shell">
+          <div className="section-heading">
+            <div>
+              <p className="eyebrow">Prevención práctica</p>
+              <h2 id="guias-prioritarias">
+                Cuatro comprobaciones que conviene resolver antes de necesitarlas.
+              </h2>
+              <p>
+                Batería, neumáticos, señalización y refrigeración concentran
+                dudas frecuentes en coches con años. Estas guías te llevan
+                directamente a la comprobación adecuada.
+              </p>
+            </div>
+          </div>
+          <div className="card-grid">
+            {priorityGuides.map((guide) => (
+              <article className="tool-card" key={guide.href}>
+                <span className="kicker">{guide.eyebrow}</span>
+                <h3>{guide.title}</h3>
+                <p>{guide.description}</p>
+                <Link className="card-link" href={guide.href}>
+                  Abrir la guía
+                </Link>
               </article>
             ))}
           </div>

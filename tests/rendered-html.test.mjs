@@ -60,11 +60,11 @@ test("renders the finished Spanish homepage with core SEO and AdSense script", a
   assert.match(output, /<html[^>]*lang="es"/i);
   assert.match(output, /<title>[^<]*Kilómetro Fiel[^<]*<\/title>/i);
   assert.match(output, /<h1>Cuida el coche que ya tienes\.<\/h1>/i);
-  assert.match(output, /rel="canonical"[^>]*href="https:\/\/kilometrofiel\.es\/?"/i);
+  assert.match(output, /rel="canonical"[^>]*href="https:\/\/www\.kilometrofiel\.es\/?"/i);
   assert.match(output, /application\/ld\+json/i);
   assert.match(
     output,
-    /href="https:\/\/kilometrofiel\.es\/manifest\.webmanifest"/i,
+    /href="https:\/\/www\.kilometrofiel\.es\/manifest\.webmanifest"/i,
   );
   assert.match(
     output,
@@ -72,6 +72,28 @@ test("renders the finished Spanish homepage with core SEO and AdSense script", a
   );
   assert.match(output, /crossorigin="anonymous"/i);
   assert.doesNotMatch(output, /codex-preview|Building your site|react-loading-skeleton/i);
+});
+
+test("links priority discovery pages directly from the homepage", async () => {
+  const output = await html("/");
+  const priorityPaths = [
+    "/guias-de-compra/cargador-mantenedor-bateria",
+    "/mantenimiento/neumaticos-dot-desgaste-presion",
+    "/itv-y-normativa/baliza-v16-conectada-certificada",
+    "/respuestas/temperatura-sube-atasco-baja-carretera",
+  ];
+
+  for (const pathname of priorityPaths) {
+    assert.match(output, new RegExp(`href="${pathname}"`));
+    const target = await html(pathname);
+    assert.match(
+      target,
+      new RegExp(
+        `href="https://www\\.kilometrofiel\\.es${pathname}"`,
+      ),
+    );
+    assert.doesNotMatch(target, /<meta[^>]*content="noindex/i);
+  }
 });
 
 test("renders every main editorial and trust route with AdSense verification script", async () => {
@@ -93,7 +115,7 @@ test("renders every main editorial and trust route with AdSense verification scr
   for (const route of routes) {
     const output = await html(route);
     assert.equal((output.match(/<h1\b/gi) ?? []).length, 1, `${route} h1`);
-    assert.match(output, new RegExp(`href="https://kilometrofiel\\.es${route}"`));
+    assert.match(output, new RegExp(`href="https://www\\.kilometrofiel\\.es${route}"`));
     assert.match(
       output,
       /pagead2\.googlesyndication\.com\/pagead\/js\/adsbygoogle\.js\?client=ca-pub-5290446197600060/i,
@@ -155,7 +177,7 @@ test("renders a complete main article with safety, FAQ and sources", async () =>
   assert.match(output, /"@type":"FAQPage"/i);
   assert.match(
     output,
-    /href="https:\/\/kilometrofiel\.es\/diagnostico\/coche-no-arranca"/i,
+    /href="https:\/\/www\.kilometrofiel\.es\/diagnostico\/coche-no-arranca"/i,
   );
 });
 
@@ -208,7 +230,7 @@ test("sitemap exposes every indexable page and internal links resolve", async ()
   const sitemapResponse = await request("/sitemap.xml");
   assert.equal(sitemapResponse.status, 200);
   const sitemap = await sitemapResponse.text();
-  const pageUrls = [...sitemap.matchAll(/<loc>(https:\/\/kilometrofiel\.es[^<]*)<\/loc>/g)]
+  const pageUrls = [...sitemap.matchAll(/<loc>(https:\/\/www\.kilometrofiel\.es[^<]*)<\/loc>/g)]
     .map((match) => new URL(match[1]));
 
   assert.equal(pageUrls.length, 41);
