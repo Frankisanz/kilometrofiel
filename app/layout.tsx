@@ -22,6 +22,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
+  other: {
+    "google-adsense-account": ADSENSE_CLIENT,
+  },
   openGraph: {
     type: "website",
     locale: "es_ES",
@@ -102,6 +105,11 @@ export default function RootLayout({
         />
       </head>
       <body>
+        <script
+          async
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`}
+          crossOrigin="anonymous"
+        />
         <a className="skip-link" href="#contenido">
           Saltar al contenido
         </a>
