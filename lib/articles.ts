@@ -240,7 +240,7 @@ export const articles: readonly Article[] = [
     slug: "coche-no-arranca",
     category: "problemas",
     title: "El coche no arranca: cómo observar el fallo sin empeorarlo",
-    seoTitle: "El coche no arranca: causas y comprobaciones seguras",
+    seoTitle: "El coche no arranca: causas y qué revisar",
     description:
       "Distingue una batería descargada de otros fallos de arranque por lo que oyes y ves. Pasos seguros, señales de peligro y cuándo pedir asistencia.",
     eyebrow: "Problemas · Arranque",
@@ -403,7 +403,7 @@ export const articles: readonly Article[] = [
     slug: "bateria-alternador-motor-arranque",
     category: "problemas",
     title: "Batería, alternador o motor de arranque: cómo distinguir las pistas",
-    seoTitle: "Batería, alternador o motor de arranque: diferencias",
+    seoTitle: "¿Batería, alternador o motor de arranque?",
     description:
       "Qué síntomas orientan hacia batería, alternador, conexiones o motor de arranque, qué no demuestran y qué mediciones debe hacer un profesional.",
     eyebrow: "Problemas · Sistema de arranque",
@@ -887,7 +887,7 @@ export const articles: readonly Article[] = [
     slug: "testigos-coche-significado",
     category: "problemas",
     title: "Testigos del coche: cómo reaccionar sin confundir color con diagnóstico",
-    seoTitle: "Testigos del coche: significado y cuándo parar",
+    seoTitle: "Testigos del coche: significado y qué hacer",
     description:
       "Qué suelen indicar los testigos rojos, amarillos y verdes, cuáles exigen detenerse y por qué el manual del vehículo es la referencia.",
     eyebrow: "Problemas · Cuadro de instrumentos",
@@ -1203,7 +1203,7 @@ export const articles: readonly Article[] = [
     slug: "como-elegir-bateria-coche",
     category: "mantenimiento",
     title: "Cómo elegir la batería del coche sin equivocarte en compatibilidad",
-    seoTitle: "Cómo elegir batería de coche: Ah, CCA, AGM y EFB",
+    seoTitle: "Elegir batería de coche: Ah, CCA, AGM y EFB",
     description:
       "Aprende a comprobar voltaje, Ah, CCA, medidas, polaridad y tecnología. Cuándo una batería necesita registro y por qué no debes bajar especificación.",
     eyebrow: "Mantenimiento · Batería",
@@ -1362,7 +1362,7 @@ export const articles: readonly Article[] = [
     slug: "como-elegir-lector-obd2",
     category: "herramientas",
     title: "Cómo elegir un lector OBD2 y entender lo que no puede diagnosticar",
-    seoTitle: "Cómo elegir lector OBD2: compatibilidad y funciones",
+    seoTitle: "Elegir lector OBD2: compatibilidad y usos",
     description:
       "Compara lectores OBD2 por cobertura, aplicación, datos en vivo y privacidad. Por qué un código no identifica automáticamente una pieza averiada.",
     eyebrow: "Herramientas · Diagnóstico OBD",
@@ -1839,7 +1839,7 @@ export const articles: readonly Article[] = [
     slug: "bateria-se-descarga-coche-parado",
     category: "problemas",
     title: "La batería se descarga con el coche parado: cómo acotar la causa",
-    seoTitle: "Batería se descarga con el coche parado: causas",
+    seoTitle: "La batería se descarga con el coche parado",
     description:
       "Diferencia batería degradada, falta de carga y consumo en reposo. Comprobaciones seguras antes de medir amperios o sacar fusibles.",
     eyebrow: "Problemas · Consumo en reposo",
@@ -2312,7 +2312,7 @@ export const articles: readonly Article[] = [
     slug: "neumaticos-dot-desgaste-presion",
     category: "mantenimiento",
     title: "Neumáticos: cómo leer el DOT, medir desgaste y ajustar la presión",
-    seoTitle: "Neumáticos: DOT, desgaste, presión y cuándo cambiar",
+    seoTitle: "Neumáticos: DOT, desgaste, presión y cambio",
     description:
       "Comprueba fecha DOT, 1,6 mm de dibujo, presión en frío, daños y compatibilidad. La edad orienta, pero no sustituye una inspección.",
     eyebrow: "Mantenimiento · Neumáticos",
@@ -2472,7 +2472,7 @@ export const articles: readonly Article[] = [
     slug: "baliza-v16-conectada-certificada",
     category: "itv-normativa",
     title: "Baliza V16 conectada: cómo comprobar que está certificada y vigente",
-    seoTitle: "Baliza V16 conectada: modelos certificados DGT",
+    seoTitle: "Baliza V16 conectada certificada por la DGT",
     description:
       "Desde 2026 la V16 conectada es el dispositivo legal en España. Aprende a verificar modelo, certificado, conectividad y fecha de caducidad.",
     eyebrow: "ITV y normativa · Emergencias",

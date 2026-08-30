@@ -155,7 +155,7 @@ export const LONG_TAIL_GUIDES = [
       title: "El coche no arranca: diagnóstico completo",
       href: "/diagnostico/coche-no-arranca",
     },
-    seoTitle: "Coche hace clic pero no arranca: qué comprobar",
+    seoTitle: "Coche hace clic y no arranca: qué comprobar",
     description:
       "Si al girar la llave se oye un clic pero el motor no gira, sigue estas comprobaciones para separar batería, conexiones y motor de arranque.",
     directAnswer:
@@ -424,7 +424,7 @@ export const LONG_TAIL_GUIDES = [
       title: "Testigos del coche y cuándo parar",
       href: "/diagnostico/testigos-coche-significado",
     },
-    seoTitle: "Testigo motor parpadea y el coche tiembla: qué hacer",
+    seoTitle: "Testigo motor parpadea y el coche tiembla",
     description:
       "Un testigo motor parpadeando con vibraciones puede indicar fallos de combustión capaces de dañar el catalizador. Actúa sin borrar pistas.",
     directAnswer:
@@ -507,7 +507,7 @@ export const LONG_TAIL_GUIDES = [
       title: "Motor sobrecalentado: qué hacer",
       href: "/diagnostico/motor-sobrecalentado-que-hacer",
     },
-    seoTitle: "La temperatura sube en atasco y baja en carretera",
+    seoTitle: "Temperatura que sube solo en atascos: causas",
     description:
       "Si el motor se calienta parado pero recupera temperatura al circular, revisa el flujo de aire y el circuito sin abrir el refrigerante en caliente.",
     directAnswer:
@@ -760,7 +760,7 @@ export const LONG_TAIL_GUIDES = [
       title: "Cómo elegir una batería compatible",
       href: "/mantenimiento/como-elegir-bateria-coche",
     },
-    seoTitle: "Batería AGM o EFB para Start-Stop: diferencias",
+    seoTitle: "Batería AGM o EFB para Start-Stop",
     description:
       "AGM y EFB no son intercambiables por intuición. Comprueba tecnología original, recuperación, medidas, capacidad y registro del vehículo.",
     directAnswer:

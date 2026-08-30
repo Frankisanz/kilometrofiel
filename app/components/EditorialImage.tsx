@@ -1,4 +1,4 @@
-import type { EditorialMedia } from "@/lib/editorial-media";
+import { buildSrcSet, type EditorialMedia } from "@/lib/editorial-media";
 
 type EditorialImageProps = {
   media: EditorialMedia;
@@ -20,7 +20,11 @@ export function EditorialImage({
   return (
     <figure className={className}>
       <picture>
-        <source srcSet={media.avifSrc} type="image/avif" />
+        <source
+          sizes={sizes}
+          srcSet={buildSrcSet(media.avifSrc, media.width)}
+          type="image/avif"
+        />
         <img
           alt={media.alt}
           className={imageClassName}
@@ -30,6 +34,7 @@ export function EditorialImage({
           loading={loading}
           sizes={sizes}
           src={media.src}
+          srcSet={buildSrcSet(media.src, media.width)}
           width={media.width}
         />
       </picture>

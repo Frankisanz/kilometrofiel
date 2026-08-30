@@ -6,22 +6,21 @@ import { ADSENSE_CLIENT, SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 
+const SITE_DESCRIPTION =
+  "Guías claras para diagnosticar síntomas, mantener coches de más de 10 años y elegir herramientas sin gastar de más.";
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     default: `${SITE_NAME} | Cuida el coche que ya tienes`,
     template: `%s | ${SITE_NAME}`,
   },
-  description:
-    "Guías claras para diagnosticar síntomas, mantener coches de más de 10 años y elegir herramientas sin gastar de más.",
+  description: SITE_DESCRIPTION,
   applicationName: SITE_NAME,
   authors: [{ name: "Equipo editorial de Kilómetro Fiel", url: "/metodologia" }],
   creator: SITE_NAME,
   publisher: SITE_NAME,
   category: "automoción",
-  alternates: {
-    canonical: "/",
-  },
   other: {
     "google-adsense-account": ADSENSE_CLIENT,
   },
@@ -31,10 +30,10 @@ export const metadata: Metadata = {
     url: "/",
     siteName: SITE_NAME,
     title: `${SITE_NAME} | Cuida el coche que ya tienes`,
-    description: SITE_TAGLINE,
+    description: SITE_DESCRIPTION,
     images: [
       {
-        url: "/og.png",
+        url: "/og.jpg",
         width: 1200,
         height: 630,
         alt: `${SITE_NAME}: ${SITE_TAGLINE}`,
@@ -44,8 +43,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: `${SITE_NAME} | Cuida el coche que ya tienes`,
-    description: SITE_TAGLINE,
-    images: ["/og.png"],
+    description: SITE_DESCRIPTION,
+    images: ["/og.jpg"],
   },
   robots: {
     index: true,
@@ -98,6 +97,11 @@ export default function RootLayout({
   return (
     <html lang="es">
       <head>
+        <link
+          rel="preconnect"
+          href="https://pagead2.googlesyndication.com"
+          crossOrigin="anonymous"
+        />
         <script
           async
           src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`}
@@ -105,11 +109,6 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <script
-          async
-          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`}
-          crossOrigin="anonymous"
-        />
         <a className="skip-link" href="#contenido">
           Saltar al contenido
         </a>

@@ -37,6 +37,8 @@ export async function generateMetadata({
     alternates: { canonical: longTailPath(guide) },
     openGraph: {
       type: "article",
+      locale: "es_ES",
+      siteName: SITE_NAME,
       title: guide.seoTitle,
       description: guide.description,
       url: longTailPath(guide),
@@ -44,7 +46,24 @@ export async function generateMetadata({
       modifiedTime: guide.updatedAt,
       images: [media.src],
     },
+    twitter: {
+      card: "summary_large_image",
+      title: guide.seoTitle,
+      description: guide.description,
+      images: [media.src],
+    },
   };
+}
+
+const dateFormatter = new Intl.DateTimeFormat("es-ES", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+  timeZone: "UTC",
+});
+
+function formatDate(date: string) {
+  return dateFormatter.format(new Date(`${date}T00:00:00Z`));
 }
 
 export default async function LongTailAnswerPage({
@@ -136,7 +155,7 @@ export default async function LongTailAnswerPage({
       >
         <div className="author-row">
           <span>Revisión editorial y documental</span>
-          <span>Actualizado: 29 de julio de 2026</span>
+          <span>Actualizado: {formatDate(guide.updatedAt)}</span>
         </div>
       </PageHero>
 

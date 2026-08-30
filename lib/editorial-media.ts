@@ -12,6 +12,21 @@ export type EditorialMedia = {
   };
 };
 
+// Physical variants generated next to each original file
+// (`imagen-480.webp`, `imagen-800.avif`, ...) so that `srcSet` + `sizes`
+// let the browser pick a smaller download on mobile.
+const RESPONSIVE_WIDTHS = [480, 800] as const;
+
+export function buildSrcSet(src: `/${string}`, intrinsicWidth: number) {
+  const extensionIndex = src.lastIndexOf(".");
+  const base = src.slice(0, extensionIndex);
+  const extension = src.slice(extensionIndex);
+  const variants = RESPONSIVE_WIDTHS.filter(
+    (width) => width < intrinsicWidth,
+  ).map((width) => `${base}-${width}${extension} ${width}w`);
+  return [...variants, `${src} ${intrinsicWidth}w`].join(", ");
+}
+
 export const EDITORIAL_MEDIA = {
   garage: {
     src: "/media/hero-garage.webp",

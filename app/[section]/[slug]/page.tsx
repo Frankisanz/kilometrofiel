@@ -63,6 +63,8 @@ export async function generateMetadata({
     alternates: { canonical: path },
     openGraph: {
       type: "article",
+      locale: "es_ES",
+      siteName: SITE_NAME,
       url: path,
       title: article.seoTitle,
       description: article.description,
@@ -299,8 +301,8 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           <section aria-labelledby="fuentes-articulo">
             <h2 id="fuentes-articulo">Fuentes consultadas</h2>
             <p>
-              Consulta realizada el 29 de julio de 2026. El manual y la
-              documentación específica de tu vehículo prevalecen.
+              Consulta realizada el {formatDate(article.updatedAt)}. El manual
+              y la documentación específica de tu vehículo prevalecen.
             </p>
             <ul className="source-list">
               {article.sources.map((source) => (

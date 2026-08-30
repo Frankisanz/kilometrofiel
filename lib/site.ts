@@ -27,8 +27,11 @@ export type LegalOwner = {
 
 export const SITE_NAME = "Kilómetro Fiel";
 export const SITE_TAGLINE = "Cuida el coche que ya tienes.";
-// Keep every canonical, sitemap and structured-data URL on the production
-// hostname that Vercel serves (the apex domain redirects here).
+// Decision (2026-08-30): the canonical host is www.kilometrofiel.es. Vercel
+// serves www as the primary domain and 308-redirects the apex here, so every
+// canonical, sitemap and structured-data URL must stay on www. If the apex is
+// ever promoted to primary in Vercel, update this constant and the assertions
+// in tests/rendered-html.test.mjs in the same change.
 export const SITE_URL = "https://www.kilometrofiel.es";
 export const SITE_LOCALE = "es-ES";
 
