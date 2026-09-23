@@ -35,6 +35,8 @@ const footerGroups = [
   {
     title: "Confianza",
     links: [
+      { label: "Sobre nosotros", href: "/sobre-nosotros" },
+      { label: "Contacto", href: "/contacto" },
       { label: "Metodología", href: "/metodologia" },
       { label: "Fuentes", href: "/fuentes" },
       { label: "Aviso legal", href: "/aviso-legal" },

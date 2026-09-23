@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { ContentCard } from "@/app/components/ContentCard";
 import { PageHero } from "@/app/components/PageHero";
 import { EDITORIAL_MEDIA } from "@/lib/editorial-media";
+import { SectionGuide } from "@/app/components/SectionGuide";
+import { TOOLS_GUIDE } from "@/lib/section-guides";
 
 export const metadata: Metadata = {
   title: "Herramientas para cuidar un coche de más de 10 años",
@@ -69,6 +71,7 @@ export default function ToolsPage() {
           </div>
         </div>
       </section>
+      <SectionGuide {...TOOLS_GUIDE} />
     </>
   );
 }

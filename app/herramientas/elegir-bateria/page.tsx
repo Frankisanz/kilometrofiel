@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { BatteryAssistant } from "@/app/components/BatteryAssistant";
 import { PageHero } from "@/app/components/PageHero";
+import { SectionGuide } from "@/app/components/SectionGuide";
+import { BATTERY_TOOL_GUIDE } from "@/lib/section-guides";
 
 export const metadata: Metadata = {
   title: "Cómo elegir la batería del coche: Ah, CCA, AGM y medidas",
@@ -39,6 +41,7 @@ export default function BatteryAssistantPage() {
           </p>
         </div>
       </section>
+      <SectionGuide {...BATTERY_TOOL_GUIDE} />
     </>
   );
 }

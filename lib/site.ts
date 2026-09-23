@@ -45,6 +45,7 @@ export const MAIN_NAVIGATION = [
   { label: "Inicio", href: "/" },
   { label: "Mantenimiento", href: "/mantenimiento" },
   { label: "Diagnóstico", href: "/diagnostico" },
+  { label: "ITV y normativa", href: "/itv-y-normativa" },
   { label: "Guías de compra", href: "/guias-de-compra" },
   { label: "Herramientas", href: "/herramientas" },
   { label: "Metodología", href: "/metodologia" },

@@ -3,11 +3,13 @@ import { ArticleDirectory } from "@/app/components/ArticleDirectory";
 import { PageHero } from "@/app/components/PageHero";
 import { getArticlesByCategory } from "@/lib/articles";
 import { EDITORIAL_MEDIA } from "@/lib/editorial-media";
+import { SectionGuide } from "@/app/components/SectionGuide";
+import { REGULATION_GUIDE } from "@/lib/section-guides";
 
 export const metadata: Metadata = {
   title: "ITV y normativa para coches de más de 10 años",
   description:
-    "Checklist ITV y guía para comprobar una baliza V16 conectada en el listado oficial de la DGT, con fuentes vigentes.",
+    "Frecuencia y resultados de la ITV, checklist de preparación, etiqueta ambiental y baliza V16 para coches de más de 10 años, con fuentes oficiales.",
   alternates: { canonical: "/itv-y-normativa" },
 };
 
@@ -27,6 +29,7 @@ export default function RegulationDirectoryPage() {
           <ArticleDirectory articles={items} />
         </div>
       </section>
+      <SectionGuide {...REGULATION_GUIDE} />
     </>
   );
 }

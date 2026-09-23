@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/app/components/PageHero";
 import { StartDiagnosis } from "@/app/components/StartDiagnosis";
+import { SectionGuide } from "@/app/components/SectionGuide";
+import { START_TOOL_GUIDE } from "@/lib/section-guides";
 
 export const metadata: Metadata = {
   title: "El coche no arranca: diagnóstico por sonido y luces",
@@ -43,6 +45,7 @@ export default function StartDiagnosisPage() {
           <StartDiagnosis />
         </div>
       </section>
+      <SectionGuide {...START_TOOL_GUIDE} />
     </>
   );
 }
