@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { MaintenancePlanner } from "@/app/components/MaintenancePlanner";
 import { PageHero } from "@/app/components/PageHero";
+import { SectionGuide } from "@/app/components/SectionGuide";
+import { PLANNER_TOOL_GUIDE } from "@/lib/section-guides";
 
 export const metadata: Metadata = {
   title: "Plan de mantenimiento para un coche antiguo",
@@ -43,6 +45,7 @@ export default function MaintenancePlannerPage() {
           <MaintenancePlanner />
         </div>
       </section>
+      <SectionGuide {...PLANNER_TOOL_GUIDE} />
     </>
   );
 }

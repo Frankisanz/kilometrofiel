@@ -4,6 +4,8 @@ import { ArticleDirectory } from "@/app/components/ArticleDirectory";
 import { PageHero } from "@/app/components/PageHero";
 import { getArticlesByCategory } from "@/lib/articles";
 import { EDITORIAL_MEDIA } from "@/lib/editorial-media";
+import { SectionGuide } from "@/app/components/SectionGuide";
+import { BUYING_GUIDE } from "@/lib/section-guides";
 
 export const metadata: Metadata = {
   title: "Guías para elegir herramientas de coche sin equivocarse",
@@ -37,6 +39,7 @@ export default function BuyingGuidesPage() {
           <ArticleDirectory articles={items} />
         </div>
       </section>
+      <SectionGuide {...BUYING_GUIDE} />
     </>
   );
 }

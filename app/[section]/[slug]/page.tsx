@@ -123,7 +123,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     author: {
       "@type": "Organization",
       name: `Equipo editorial de ${SITE_NAME}`,
-      url: `${SITE_URL}/metodologia`,
+      url: `${SITE_URL}/sobre-nosotros`,
     },
     publisher: {
       "@type": "Organization",
@@ -188,7 +188,10 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         ]}
       >
         <div className="author-row">
-          <span>Revisión editorial y documental</span>
+          <span>
+            Por el{" "}
+            <Link href="/sobre-nosotros">equipo de Kilómetro Fiel</Link>
+          </span>
           <span>Actualizado: {formatDate(article.updatedAt)}</span>
           <span>{article.readingMinutes} min de lectura</span>
         </div>

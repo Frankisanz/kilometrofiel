@@ -4,11 +4,13 @@ import { ArticleDirectory } from "@/app/components/ArticleDirectory";
 import { PageHero } from "@/app/components/PageHero";
 import { getArticlesByCategory } from "@/lib/articles";
 import { EDITORIAL_MEDIA } from "@/lib/editorial-media";
+import { SectionGuide } from "@/app/components/SectionGuide";
+import { MAINTENANCE_GUIDE } from "@/lib/section-guides";
 
 export const metadata: Metadata = {
   title: "Mantenimiento de coches de 10, 15 y 20 años",
   description:
-    "Guías para planificar el mantenimiento por antigüedad, historial, batería y neumáticos sin usar intervalos genéricos.",
+    "Guías para planificar el mantenimiento por antigüedad: aceite, distribución, frenos, batería y neumáticos, sin usar intervalos genéricos.",
   alternates: { canonical: "/mantenimiento" },
 };
 
@@ -34,6 +36,7 @@ export default function MaintenanceDirectoryPage() {
           <ArticleDirectory articles={items} />
         </div>
       </section>
+      <SectionGuide {...MAINTENANCE_GUIDE} />
     </>
   );
 }

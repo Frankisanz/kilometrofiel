@@ -17,6 +17,8 @@ const staticRoutes = [
   "/herramientas/elegir-bateria",
   "/respuestas",
   "/recomendaciones",
+  "/sobre-nosotros",
+  "/contacto",
   "/metodologia",
   "/fuentes",
   "/aviso-legal",

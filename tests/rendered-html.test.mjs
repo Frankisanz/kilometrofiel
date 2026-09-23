@@ -105,6 +105,8 @@ test("renders every main editorial and trust route with AdSense verification scr
     "/herramientas",
     "/respuestas",
     "/recomendaciones",
+    "/sobre-nosotros",
+    "/contacto",
     "/metodologia",
     "/fuentes",
     "/aviso-legal",
@@ -233,7 +235,7 @@ test("sitemap exposes every indexable page and internal links resolve", async ()
   const pageUrls = [...sitemap.matchAll(/<loc>(https:\/\/www\.kilometrofiel\.es[^<]*)<\/loc>/g)]
     .map((match) => new URL(match[1]));
 
-  assert.equal(pageUrls.length, 41);
+  assert.equal(pageUrls.length, 48);
 
   const internalPaths = new Set(["/"]);
   for (const url of pageUrls) {
@@ -255,5 +257,28 @@ test("sitemap exposes every indexable page and internal links resolve", async ()
       response.status >= 200 && response.status < 400,
       `${pathname} returned ${response.status}`,
     );
+  }
+});
+
+test("links the about and contact pages from every page footer", async () => {
+  const output = await html("/");
+
+  assert.match(output, /href="\/sobre-nosotros"/);
+  assert.match(output, /href="\/contacto"/);
+});
+
+test("renders the new maintenance and ITV guides with sources", async () => {
+  for (const route of [
+    "/itv-y-normativa/itv-frecuencia-desfavorable-negativa",
+    "/itv-y-normativa/etiqueta-ambiental-coche-antiguo",
+    "/mantenimiento/aceite-motor-nivel-consumo-cambio",
+    "/mantenimiento/correa-distribucion-cuando-cambiar",
+    "/mantenimiento/revisar-frenos-liquido-pastillas-discos",
+  ]) {
+    const output = await html(route);
+    assert.equal((output.match(/<h1\b/gi) ?? []).length, 1, `${route} h1`);
+    assert.match(output, /Respuesta directa/i);
+    assert.match(output, /Fuentes consultadas/i);
+    assert.match(output, /"@type":"Article"/i);
   }
 });

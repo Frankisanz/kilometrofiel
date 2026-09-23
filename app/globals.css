@@ -1797,6 +1797,19 @@ fieldset.field {
   margin-top: 2rem;
 }
 
+.section-guide {
+  padding-block: 0;
+}
+
+.section-guide h2 {
+  margin-top: 0;
+}
+
+.section-guide p,
+.section-guide ul {
+  margin-block: 0.75rem 0;
+}
+
 .legal-layout p,
 .legal-layout li {
   color: var(--ink-soft);
