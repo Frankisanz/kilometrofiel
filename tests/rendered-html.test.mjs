@@ -235,7 +235,7 @@ test("sitemap exposes every indexable page and internal links resolve", async ()
   const pageUrls = [...sitemap.matchAll(/<loc>(https:\/\/www\.kilometrofiel\.es[^<]*)<\/loc>/g)]
     .map((match) => new URL(match[1]));
 
-  assert.equal(pageUrls.length, 48);
+  assert.equal(pageUrls.length, 61);
 
   const internalPaths = new Set(["/"]);
   for (const url of pageUrls) {
@@ -281,4 +281,39 @@ test("renders the new maintenance and ITV guides with sources", async () => {
     assert.match(output, /Fuentes consultadas/i);
     assert.match(output, /"@type":"Article"/i);
   }
+});
+
+test("renders the October 2026 guides with safety, FAQ and sources", async () => {
+  for (const route of [
+    "/diagnostico/ruido-vibracion-al-frenar",
+    "/diagnostico/coche-se-va-hacia-un-lado",
+    "/diagnostico/embrague-patina-pedal-duro",
+    "/diagnostico/aire-acondicionado-coche-no-enfria",
+    "/diagnostico/manchas-liquido-debajo-coche",
+    "/diagnostico/coche-pierde-potencia-modo-emergencia",
+    "/mantenimiento/filtro-particulas-dpf-egr-diesel",
+    "/mantenimiento/liquido-refrigerante-anticongelante",
+    "/mantenimiento/amortiguadores-desgaste-cuando-cambiar",
+    "/mantenimiento/coche-parado-mucho-tiempo",
+    "/itv-y-normativa/itv-caducada-que-hacer",
+    "/itv-y-normativa/vender-o-dar-de-baja-coche-viejo",
+  ]) {
+    const output = await html(route);
+    assert.equal((output.match(/<h1\b/gi) ?? []).length, 1, `${route} h1`);
+    assert.match(output, /Respuesta directa/i);
+    assert.match(output, /Preguntas frecuentes/i);
+    assert.match(output, /Fuentes consultadas/i);
+    assert.match(output, /"@type":"FAQPage"/i);
+  }
+});
+
+test("renders the ITV calculator and links it from the tools hub", async () => {
+  const output = await html("/herramientas/calculadora-itv");
+  assert.match(output, /<form\b/i);
+  assert.match(output, /<button\b[^>]*type="submit"/i);
+  assert.match(output, /Real Decreto 920\/2017/);
+  assert.match(output, /"@type":"WebApplication"/);
+
+  const hub = await html("/herramientas");
+  assert.match(hub, /href="\/herramientas\/calculadora-itv"/);
 });

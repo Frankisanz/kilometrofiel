@@ -8,7 +8,7 @@ import { TOOLS_GUIDE } from "@/lib/section-guides";
 export const metadata: Metadata = {
   title: "Herramientas para cuidar un coche de más de 10 años",
   description:
-    "Diagnóstico orientativo de arranque, planificador de mantenimiento y asistente para leer la batería de tu coche.",
+    "Diagnóstico orientativo de arranque, planificador de mantenimiento, asistente para leer la batería y calculadora de la próxima ITV.",
   alternates: { canonical: "/herramientas" },
 };
 
@@ -37,6 +37,14 @@ const tools = [
     href: "/herramientas/elegir-bateria",
     media: EDITORIAL_MEDIA.battery,
   },
+  {
+    eyebrow: "Matriculación → próxima fecha",
+    title: "Calculadora: ¿cuándo me toca la ITV?",
+    description:
+      "Estima la próxima inspección de un turismo, furgoneta, moto o ciclomotor según su antigüedad y la última ITV, y desde cuándo puedes adelantarla.",
+    href: "/herramientas/calculadora-itv",
+    media: EDITORIAL_MEDIA.dashboard,
+  },
 ] as const;
 
 export default function ToolsPage() {
@@ -45,7 +53,7 @@ export default function ToolsPage() {
       <PageHero
         eyebrow="Herramientas gratuitas"
         title="Responde lo que ves. Ordena el siguiente paso."
-        description="Tres asistentes que transforman datos sencillos en una lista prudente de comprobaciones. No diagnostican ni sustituyen el manual o el taller."
+        description="Cuatro asistentes que transforman datos sencillos en una lista prudente de comprobaciones. No diagnostican ni sustituyen el manual o el taller."
         media={EDITORIAL_MEDIA.garage}
         breadcrumbs={[{ label: "Herramientas" }]}
       />
