@@ -22,6 +22,9 @@ const featuredSlugs = [
   "bateria-se-descarga-coche-parado",
   "testigos-coche-significado",
   "motor-sobrecalentado-que-hacer",
+  "ruido-vibracion-al-frenar",
+  "coche-pierde-potencia-modo-emergencia",
+  "aire-acondicionado-coche-no-enfria",
 ] as const;
 
 const featuredArticles = featuredSlugs
@@ -313,6 +316,16 @@ export default function Home() {
               <p>Ah, CCA, AGM/EFB, medidas, polaridad y Start-Stop.</p>
               <Link className="card-link" href="/herramientas/elegir-bateria">
                 Leer mi batería
+              </Link>
+            </article>
+            <article className="tool-card">
+              <span className="tool-icon" aria-hidden="true">
+                04
+              </span>
+              <h3>¿Cuándo me toca la ITV?</h3>
+              <p>Matriculación y última inspección: próxima fecha y margen.</p>
+              <Link className="card-link" href="/herramientas/calculadora-itv">
+                Calcular mi fecha
               </Link>
             </article>
           </div>

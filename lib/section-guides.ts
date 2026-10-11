@@ -108,7 +108,7 @@ export const TOOLS_GUIDE: SectionGuideContent = {
     {
       heading: "Reglas explícitas, no una caja negra",
       paragraphs: [
-        "Los tres asistentes funcionan con reglas escritas a partir de nuestras guías y de sus fuentes. Tus respuestas se procesan en tu navegador y no se envían a ningún servidor ni se guardan en una cuenta. No usan inteligencia artificial ni generan un diagnóstico: ordenan comprobaciones prudentes según lo que describes.",
+        "Los cuatro asistentes funcionan con reglas escritas a partir de nuestras guías y de sus fuentes. Tus respuestas se procesan en tu navegador y no se envían a ningún servidor ni se guardan en una cuenta. No usan inteligencia artificial ni generan un diagnóstico: ordenan comprobaciones prudentes según lo que describes.",
       ],
     },
     {
@@ -201,6 +201,38 @@ export const BATTERY_TOOL_GUIDE: SectionGuideContent = {
       heading: "Antes de comprar",
       paragraphs: [
         "Comprueba que la batería actual está realmente agotada. Una batería que se descarga por un consumo en reposo o por un alternador que no carga fallará igual al cabo de unos días. Nuestras guías sobre descarga y sobre batería, alternador y motor de arranque te ayudan a descartarlo.",
+      ],
+    },
+  ],
+};
+
+export const ITV_TOOL_GUIDE: SectionGuideContent = {
+  eyebrow: "Cómo se calcula",
+  title: "Cada cuánto se pasa la ITV y cómo se cuenta la fecha",
+  blocks: [
+    {
+      heading: "La periodicidad depende del tipo de vehículo y de su antigüedad",
+      paragraphs: [
+        "El artículo 6.1 del Real Decreto 920/2017 fija cada cuánto debe inspeccionarse cada vehículo según su categoría y los años transcurridos desde la primera matriculación. Para un turismo de uso particular, la primera ITV llega a los cuatro años, después se pasa cada dos años y, a partir de los diez, cada año.",
+      ],
+      bullets: [
+        "Turismos particulares: exentos hasta 4 años, cada 2 años de 4 a 10, cada año desde los 10.",
+        "Furgonetas y camiones de hasta 3.500 kg: exentos hasta 2 años, cada 2 años de 2 a 6, cada año de 6 a 10 y cada 6 meses desde los 10.",
+        "Motocicletas: exentas hasta 4 años y después cada 2 años.",
+        "Ciclomotores: exentos hasta 3 años y después cada 2 años.",
+      ],
+    },
+    {
+      heading: "Adelantarla 30 días no te hace perder la fecha",
+      paragraphs: [
+        "El plazo de validez se cuenta desde el día de la inspección favorable. La excepción es que la pases dentro de los 30 días naturales anteriores al vencimiento: entonces se cuenta desde la fecha en que vencía la anterior, así que no pierdes días. Retrasarla, en cambio, no aporta nada: si la pasas tarde, la siguiente se calcula desde el día en que la superes.",
+      ],
+    },
+    {
+      heading: "Qué hacer con el resultado",
+      paragraphs: [
+        "Comprueba la fecha en tu tarjeta ITV o en la pegatina del parabrisas, que es la que tiene validez. Pide cita con antelación, sobre todo en primavera y antes del verano, cuando las estaciones suelen tener más demanda, y revisa antes luces, neumáticos, frenos y testigos con nuestra lista de comprobación.",
+        "Si la fecha ya ha pasado, circular con la ITV caducada es una infracción grave. Pide cita cuanto antes y usa el coche solo para ir a la estación.",
       ],
     },
   ],

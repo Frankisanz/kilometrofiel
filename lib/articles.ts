@@ -69,6 +69,7 @@ export interface Article {
 }
 
 import { itvAndMaintenanceArticles } from "@/lib/articles-itv-mantenimiento";
+import { october2026Articles } from "@/lib/articles-ampliacion-2026-10";
 
 const SOURCE_ACCESSED_AT = "2026-07-29";
 
@@ -2624,6 +2625,7 @@ export const articles: readonly Article[] = [
     updatedAt: "2026-07-29",
   },
   ...itvAndMaintenanceArticles,
+  ...october2026Articles,
 ];
 
 export function getArticleBySlug(slug: string): Article | undefined {

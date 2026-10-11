@@ -15,6 +15,7 @@ const staticRoutes = [
   "/herramientas/diagnostico-arranque",
   "/herramientas/planificador",
   "/herramientas/elegir-bateria",
+  "/herramientas/calculadora-itv",
   "/respuestas",
   "/recomendaciones",
   "/sobre-nosotros",
@@ -28,12 +29,15 @@ const staticRoutes = [
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const originalPublication = new Date("2026-07-29T00:00:00.000Z");
-  const homepageUpdated = new Date("2026-08-10T00:00:00.000Z");
+  const homepageUpdated = new Date("2026-10-11T00:00:00.000Z");
 
   return [
     ...staticRoutes.map((route) => ({
       url: `${SITE_URL}${route}`,
-      lastModified: route === "" ? homepageUpdated : originalPublication,
+      lastModified:
+        route === "" || route === "/herramientas" || route === "/herramientas/calculadora-itv"
+          ? homepageUpdated
+          : originalPublication,
       changeFrequency: route === "" ? ("weekly" as const) : ("monthly" as const),
       priority: route === "" ? 1 : route.startsWith("/herramientas") ? 0.8 : 0.7,
     })),

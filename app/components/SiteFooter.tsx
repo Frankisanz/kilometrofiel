@@ -20,6 +20,7 @@ const footerGroups = [
       },
       { label: "Plan de mantenimiento", href: "/herramientas/planificador" },
       { label: "Elegir batería", href: "/herramientas/elegir-bateria" },
+      { label: "¿Cuándo me toca la ITV?", href: "/herramientas/calculadora-itv" },
     ],
   },
   {

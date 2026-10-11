@@ -14,10 +14,12 @@ npm run dev
 La aplicación usa Next.js App Router sobre Vinext y se prepara para desplegarse
 con Sites. El contenido principal vive en:
 
-- `lib/articles.ts`: 15 guías troncales.
+- `lib/articles.ts`, `lib/articles-itv-mantenimiento.ts` y
+  `lib/articles-ampliacion-2026-10.ts`: 32 guías troncales.
 - `lib/long-tail-guides.ts`: respuestas a diez consultas específicas.
 - `lib/commerce.ts`: reglas y recomendaciones de afiliación.
-- `app/components`: interfaz y tres asistentes interactivos.
+- `app/components`: interfaz y cuatro asistentes interactivos (incluida la
+  calculadora de la ITV, cuya lógica está en `lib/itv-schedule.ts`).
 
 ## Calidad
 
