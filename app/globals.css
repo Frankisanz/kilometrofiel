@@ -2129,3 +2129,27 @@ fieldset.field {
     color: #333;
   }
 }
+
+.infographic {
+  margin-block: 2rem;
+}
+
+.infographic-figure {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgb(20 32 28 / 10%);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow);
+}
+
+.infographic-image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.infographic-caption {
+  margin-top: 0.6rem;
+  color: var(--steel-dark);
+  font-size: 0.9rem;
+}

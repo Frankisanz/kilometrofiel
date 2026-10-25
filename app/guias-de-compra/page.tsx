@@ -1,16 +1,21 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArticleDirectory } from "@/app/components/ArticleDirectory";
+import { HubCollectionJsonLd, HubSpecificAnswers } from "@/app/components/HubCollection";
 import { PageHero } from "@/app/components/PageHero";
 import { getArticlesByCategory } from "@/lib/articles";
 import { EDITORIAL_MEDIA } from "@/lib/editorial-media";
 import { SectionGuide } from "@/app/components/SectionGuide";
 import { BUYING_GUIDE } from "@/lib/section-guides";
 
+const HUB_TITLE =
+  "Guías para elegir herramientas de coche sin equivocarse";
+const HUB_DESCRIPTION =
+  "Cómo elegir lector OBD2, arrancador, cargador y multímetro por compatibilidad y seguridad, sin precios ni rankings artificiales.";
+
 export const metadata: Metadata = {
-  title: "Guías para elegir herramientas de coche sin equivocarse",
-  description:
-    "Cómo elegir lector OBD2, arrancador, cargador y multímetro por compatibilidad y seguridad, sin precios ni rankings artificiales.",
+  title: HUB_TITLE,
+  description: HUB_DESCRIPTION,
   alternates: { canonical: "/guias-de-compra" },
 };
 
@@ -37,9 +42,16 @@ export default function BuyingGuidesPage() {
             </Link>
           </div>
           <ArticleDirectory articles={items} />
+          <HubSpecificAnswers category="herramientas" />
         </div>
       </section>
       <SectionGuide {...BUYING_GUIDE} />
+      <HubCollectionJsonLd
+        category="herramientas"
+        name={HUB_TITLE}
+        description={HUB_DESCRIPTION}
+        path="/guias-de-compra"
+      />
     </>
   );
 }

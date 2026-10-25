@@ -18,7 +18,15 @@ import {
   getRelatedArticles,
 } from "@/lib/articles";
 import { getArticleMedia } from "@/lib/editorial-media";
+import { InfographicFigure } from "@/app/components/InfographicFigure";
+import {
+  getInfographic,
+  infographicImageObject,
+  photoImageObject,
+} from "@/lib/infographics";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
+import { editorialArticleFields } from "@/lib/structured-data";
+import type { Article } from "@/lib/articles";
 import { LONG_TAIL_GUIDES } from "@/lib/long-tail-guides";
 import type { CommerceCategoryId } from "@/lib/commerce";
 
@@ -56,6 +64,15 @@ export async function generateMetadata({
 
   const path = articlePath(article);
   const media = getArticleMedia(article.slug, article.category);
+  const infographic = getInfographic(article.slug);
+  const shareImage = infographic
+    ? {
+        url: infographic.jpgSrc,
+        width: infographic.width,
+        height: infographic.height,
+        alt: infographic.alt,
+      }
+    : { url: media.src, width: media.width, height: media.height, alt: media.alt };
 
   return {
     title: article.seoTitle,
@@ -71,13 +88,13 @@ export async function generateMetadata({
       publishedTime: article.publishedAt,
       modifiedTime: article.updatedAt,
       section: CATEGORY_LABELS[article.category],
-      images: [media.src],
+      images: [shareImage],
     },
     twitter: {
       card: "summary_large_image",
       title: article.seoTitle,
       description: article.description,
-      images: [media.src],
+      images: [shareImage],
     },
   };
 }
@@ -88,6 +105,21 @@ const dateFormatter = new Intl.DateTimeFormat("es-ES", {
   year: "numeric",
   timeZone: "UTC",
 });
+
+function countWords(article: Article) {
+  const text = [
+    article.summary,
+    article.directAnswer,
+    ...article.sections.flatMap((section) => [
+      ...section.paragraphs,
+      ...(section.bullets ?? []),
+      section.callout?.text ?? "",
+    ]),
+    ...article.safeSteps.map((step) => step.detail),
+    ...article.faqs.flatMap((faq) => [faq.question, faq.answer]),
+  ].join(" ");
+  return text.split(/\s+/).filter(Boolean).length;
+}
 
 function formatDate(date: string) {
   return dateFormatter.format(new Date(`${date}T00:00:00Z`));
@@ -110,31 +142,24 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   const categoryHref = categoryPath(article.category);
   const commercialCategory = commercialCategoryByArticle[article.slug];
   const media = getArticleMedia(article.slug, article.category);
+  const infographic = getInfographic(article.slug);
 
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
+    "@id": `${SITE_URL}${canonicalPath}#guia`,
     headline: article.title,
     description: article.description,
     datePublished: article.publishedAt,
     dateModified: article.updatedAt,
     inLanguage: "es-ES",
     mainEntityOfPage: `${SITE_URL}${canonicalPath}`,
-    author: {
-      "@type": "Organization",
-      name: `Equipo editorial de ${SITE_NAME}`,
-      url: `${SITE_URL}/sobre-nosotros`,
-    },
-    publisher: {
-      "@type": "Organization",
-      name: SITE_NAME,
-      url: SITE_URL,
-      logo: {
-        "@type": "ImageObject",
-        url: `${SITE_URL}/icons/icon-512.png`,
-      },
-    },
-    image: `${SITE_URL}${media.src}`,
+    articleSection: categoryLabel,
+    wordCount: countWords(article),
+    ...editorialArticleFields(article.sources),
+    image: infographic
+      ? [infographicImageObject(infographic, canonicalPath), photoImageObject(media)]
+      : [photoImageObject(media)],
   };
 
   const faqSchema = {
@@ -203,6 +228,8 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             <h2 id="respuesta-directa">Respuesta directa</h2>
             <p>{article.directAnswer}</p>
           </section>
+
+          {infographic ? <InfographicFigure info={infographic} /> : null}
 
           {article.dangerSignals.length > 0 ? (
             <section className="danger-box" aria-labelledby="senales-peligro">

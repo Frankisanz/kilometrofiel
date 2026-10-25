@@ -32,6 +32,13 @@ npm test
 renderizado. Las guías muestran fuentes, fecha de revisión, señales de riesgo,
 límites del diagnóstico y enlaces relacionados.
 
+## SEO, GEO e imágenes
+
+- `/llms.txt` y `/llms-full.txt` se generan desde los mismos datos que las páginas (`lib/llms.ts`): índice y respuestas directas para asistentes de IA.
+- `robots.txt` permite explícitamente los rastreadores de búsqueda con IA (`app/robots.ts`).
+- Las guías y respuestas comparten una entidad `Organization` con `@id` estable y citan sus fuentes en `citation` (`lib/structured-data.ts`).
+- Infografías propias en `public/media/infografias/`: el contenido está en `scripts/infographics.data.mjs` y se regeneran con `node scripts/build-infographics.mjs` (necesita Playwright con Chromium, que no es dependencia del proyecto). El script también reescribe `lib/infographics.generated.ts`.
+
 ## Afiliación
 
 Kilómetro Fiel usa el ID independiente `kmfiel-21`. Los enlaces comerciales se

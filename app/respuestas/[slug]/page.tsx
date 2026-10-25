@@ -14,6 +14,8 @@ import {
 } from "@/lib/long-tail-guides";
 import { getArticleMedia } from "@/lib/editorial-media";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
+import { editorialArticleFields } from "@/lib/structured-data";
+import { photoImageObject } from "@/lib/infographics";
 
 type LongTailPageProps = {
   params: Promise<{ slug: string }>;
@@ -89,21 +91,17 @@ export default async function LongTailAnswerPage({
     dateModified: guide.updatedAt,
     inLanguage: "es-ES",
     mainEntityOfPage: `${SITE_URL}${canonicalPath}`,
-    image: `${SITE_URL}${media.src}`,
-    author: {
-      "@type": "Organization",
-      name: `Equipo editorial de ${SITE_NAME}`,
-      url: `${SITE_URL}/sobre-nosotros`,
+    image: photoImageObject(media),
+    articleSection: guide.cluster,
+    about: {
+      "@type": "Article",
+      "@id": `${SITE_URL}${guide.hub.href}#guia`,
+      name: guide.hub.title,
+      url: `${SITE_URL}${guide.hub.href}`,
     },
-    publisher: {
-      "@type": "Organization",
-      name: SITE_NAME,
-      url: SITE_URL,
-      logo: {
-        "@type": "ImageObject",
-        url: `${SITE_URL}/icons/icon-512.png`,
-      },
-    },
+    ...editorialArticleFields(
+      guide.sources.map((source) => ({ name: source.title, url: source.url })),
+    ),
   };
 
   const faqSchema = {

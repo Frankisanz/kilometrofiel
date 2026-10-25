@@ -23,7 +23,7 @@ export const CATEGORY_LABELS: Record<ArticleCategory, string> = {
   herramientas: "Herramientas y equipamiento",
 };
 
-export function articlePath(article: Article) {
+export function articlePath(article: Article): `/${string}` {
   return `/${ARTICLE_SECTION_BY_CATEGORY[article.category]}/${article.slug}`;
 }
 

@@ -370,7 +370,7 @@ export default function Home() {
               </p>
             </div>
             <Link className="button button-dark" href="/respuestas">
-              Ver las 10 respuestas
+              Ver las {LONG_TAIL_GUIDES.length} respuestas
             </Link>
           </div>
           <LongTailDirectory guides={LONG_TAIL_GUIDES.slice(0, 3)} />

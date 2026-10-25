@@ -235,7 +235,7 @@ test("sitemap exposes every indexable page and internal links resolve", async ()
   const pageUrls = [...sitemap.matchAll(/<loc>(https:\/\/www\.kilometrofiel\.es[^<]*)<\/loc>/g)]
     .map((match) => new URL(match[1]));
 
-  assert.equal(pageUrls.length, 61);
+  assert.equal(pageUrls.length, 77);
 
   const internalPaths = new Set(["/"]);
   for (const url of pageUrls) {
@@ -316,4 +316,81 @@ test("renders the ITV calculator and links it from the tools hub", async () => {
 
   const hub = await html("/herramientas");
   assert.match(hub, /href="\/herramientas\/calculadora-itv"/);
+});
+
+test("renders the late October 2026 guides and answers", async () => {
+  for (const route of [
+    "/diagnostico/coche-tiembla-ralenti",
+    "/diagnostico/tirones-al-acelerar-fallo-encendido",
+    "/diagnostico/ruido-al-girar-volante-direccion-dura",
+    "/diagnostico/olor-a-quemado-coche",
+    "/diagnostico/coche-gasta-mas-combustible",
+    "/mantenimiento/filtros-coche-aire-habitaculo-combustible",
+    "/itv-y-normativa/faros-amarillentos-luces-itv",
+    "/itv-y-normativa/comprar-coche-segunda-mano-que-revisar",
+    "/respuestas/coche-vibra-aire-acondicionado-parado",
+    "/respuestas/tirones-en-frio-desaparecen-en-caliente",
+    "/respuestas/crujido-al-girar-volante-a-fondo",
+    "/respuestas/olor-quemado-bajar-puerto",
+    "/respuestas/olor-dulce-calefaccion-coche",
+    "/respuestas/como-calcular-consumo-real-coche",
+    "/respuestas/faros-opacos-suspenden-itv",
+    "/respuestas/informe-dgt-antes-de-comprar-coche",
+  ]) {
+    const output = await html(route);
+    assert.equal((output.match(/<h1\b/gi) ?? []).length, 1, `${route} h1`);
+    assert.match(output, /Respuesta directa/i);
+    assert.match(output, /Fuentes consultadas/i);
+    assert.match(output, /"@type":"FAQPage"/i);
+    assert.match(output, /"citation":\[/, `${route} citation`);
+    assert.match(output, /"@type":"SpeakableSpecification"/, `${route} speakable`);
+  }
+});
+
+test("shows an original infographic with license metadata and share image", async () => {
+  const output = await html("/mantenimiento/neumaticos-dot-desgaste-presion");
+  assert.match(output, /src="\/media\/infografias\/neumaticos-dot-desgaste-presion\.webp"/);
+  assert.match(output, /alt="Infografía para leer el código DOT/);
+  assert.match(output, /"license":"https:\/\/www\.kilometrofiel\.es\/aviso-legal"/);
+  assert.match(output, /"creditText":"Kilómetro Fiel"/);
+  assert.match(
+    output,
+    /property="og:image" content="https:\/\/www\.kilometrofiel\.es\/media\/infografias\/neumaticos-dot-desgaste-presion\.jpg"/,
+  );
+});
+
+test("card thumbnails are decorative and the site graph is shared", async () => {
+  const output = await html("/diagnostico");
+  assert.doesNotMatch(output, /class="content-card-image"[^>]*alt="[^"]+"/);
+  assert.match(output, /"@type":"CollectionPage"/);
+  assert.match(output, /"@id":"https:\/\/www\.kilometrofiel\.es\/#organizacion"/);
+  assert.match(output, /href="\/respuestas\/coche-vibra-aire-acondicionado-parado"/);
+});
+
+test("publishes llms.txt, llms-full.txt and welcomes AI crawlers", async () => {
+  const index = await request("/llms.txt");
+  assert.equal(index.status, 200);
+  assert.match(index.headers.get("content-type") ?? "", /^text\/plain\b/i);
+  const indexText = await index.text();
+  assert.match(indexText, /^# Kilómetro Fiel$/m);
+  assert.match(indexText, /\(https:\/\/www\.kilometrofiel\.es\/diagnostico\/coche-tiembla-ralenti\)/);
+  assert.match(indexText, /llms-full\.txt/);
+
+  const full = await (await request("/llms-full.txt")).text();
+  assert.match(full, /URL: https:\/\/www\.kilometrofiel\.es\/itv-y-normativa\/comprar-coche-segunda-mano-que-revisar/);
+
+  const robots = await (await request("/robots.txt")).text();
+  for (const bot of ["OAI-SearchBot", "PerplexityBot", "ClaudeBot", "Google-Extended"]) {
+    assert.match(robots, new RegExp(`User-Agent: ${bot}`, "i"));
+  }
+  assert.doesNotMatch(robots, /Disallow: \/\s*$/m);
+});
+
+test("sitemap lists images for guides", async () => {
+  const sitemap = await (await request("/sitemap.xml")).text();
+  assert.match(sitemap, /xmlns:image=/);
+  assert.match(
+    sitemap,
+    /<image:loc>https:\/\/www\.kilometrofiel\.es\/media\/infografias\/olor-a-quemado-coche\.jpg<\/image:loc>/,
+  );
 });

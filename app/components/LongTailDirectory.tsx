@@ -1,6 +1,7 @@
 import { ContentCard } from "@/app/components/ContentCard";
 import { getArticleMedia } from "@/lib/editorial-media";
-import type { LongTailGuide } from "@/lib/long-tail-guides";
+import { getArticleBySlug, type ArticleCategory } from "@/lib/articles";
+import { LONG_TAIL_GUIDES, type LongTailGuide } from "@/lib/long-tail-guides";
 
 export function longTailPath(guide: LongTailGuide) {
   return `/respuestas/${guide.slug}`;
@@ -25,5 +26,11 @@ export function LongTailDirectory({
         />
       ))}
     </div>
+  );
+}
+
+export function longTailGuidesForCategory(category: ArticleCategory) {
+  return LONG_TAIL_GUIDES.filter(
+    (guide) => getArticleBySlug(guide.hub.slug)?.category === category,
   );
 }

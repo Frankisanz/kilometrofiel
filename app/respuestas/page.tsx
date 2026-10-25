@@ -1,13 +1,18 @@
 import type { Metadata } from "next";
-import { LongTailDirectory } from "@/app/components/LongTailDirectory";
+import { JsonLd } from "@/app/components/JsonLd";
+import { LongTailDirectory, longTailPath } from "@/app/components/LongTailDirectory";
 import { PageHero } from "@/app/components/PageHero";
 import { EDITORIAL_MEDIA } from "@/lib/editorial-media";
 import { LONG_TAIL_GUIDES } from "@/lib/long-tail-guides";
+import { collectionPageSchema } from "@/lib/structured-data";
+
+const HUB_TITLE = "Respuestas a problemas concretos de coches veteranos";
+const HUB_DESCRIPTION =
+  "Respuestas específicas sobre arranque, batería, testigos, temperatura, vibraciones, consumo, OBD2, ITV y baliza V16 para coches con años.";
 
 export const metadata: Metadata = {
-  title: "Respuestas a problemas concretos de coches veteranos",
-  description:
-    "Respuestas específicas sobre arranque, batería, testigo motor, temperatura, OBD2, ITV y baliza V16 para coches con años.",
+  title: HUB_TITLE,
+  description: HUB_DESCRIPTION,
   alternates: { canonical: "/respuestas" },
 };
 
@@ -30,6 +35,17 @@ export default function AnswersDirectoryPage() {
           <LongTailDirectory guides={LONG_TAIL_GUIDES} />
         </div>
       </section>
+      <JsonLd
+        data={collectionPageSchema({
+          name: HUB_TITLE,
+          description: HUB_DESCRIPTION,
+          path: "/respuestas",
+          items: LONG_TAIL_GUIDES.map((guide) => ({
+            name: guide.query,
+            path: longTailPath(guide),
+          })),
+        })}
+      />
     </>
   );
 }
