@@ -1,3 +1,5 @@
+import { OCTOBER_2026_LONG_TAIL_GUIDES } from "@/lib/long-tail-guides-2026-10";
+
 export type LongTailGuide = {
   slug: string;
   query: string;
@@ -10,7 +12,7 @@ export type LongTailGuide = {
   seoTitle: string;
   description: string;
   directAnswer: string;
-  updatedAt: "2026-07-29";
+  updatedAt: string;
   sections: readonly {
     title: string;
     paragraphs: readonly string[];
@@ -145,7 +147,7 @@ const SOURCES = {
   },
 } as const;
 
-export const LONG_TAIL_GUIDES = [
+const BASE_LONG_TAIL_GUIDES = [
   {
     slug: "coche-hace-clic-no-arranca-luces-funcionan",
     query: "Mi coche hace clic pero no arranca y las luces funcionan, ¿qué puede ser?",
@@ -1011,6 +1013,11 @@ export const LONG_TAIL_GUIDES = [
     sources: [SOURCES.dgtV16, SOURCES.boeV16, SOURCES.dgtV16Technical],
   },
 ] as const satisfies readonly LongTailGuide[];
+
+export const LONG_TAIL_GUIDES: readonly LongTailGuide[] = [
+  ...BASE_LONG_TAIL_GUIDES,
+  ...OCTOBER_2026_LONG_TAIL_GUIDES,
+];
 
 export function getLongTailGuide(
   slug: string,

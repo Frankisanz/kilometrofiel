@@ -7,6 +7,8 @@ type EditorialImageProps = {
   loading?: "eager" | "lazy";
   showCredit?: boolean;
   sizes?: string;
+  /** Card thumbnails repeat across unrelated cards: mark them decorative. */
+  decorative?: boolean;
 };
 
 export function EditorialImage({
@@ -16,6 +18,7 @@ export function EditorialImage({
   loading = "lazy",
   showCredit = false,
   sizes = "100vw",
+  decorative = false,
 }: EditorialImageProps) {
   return (
     <figure className={className}>
@@ -26,7 +29,7 @@ export function EditorialImage({
           type="image/avif"
         />
         <img
-          alt={media.alt}
+          alt={decorative ? "" : media.alt}
           className={imageClassName}
           decoding="async"
           fetchPriority={loading === "eager" ? "high" : "auto"}

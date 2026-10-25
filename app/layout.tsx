@@ -3,6 +3,7 @@ import { SiteFooter } from "@/app/components/SiteFooter";
 import { SiteHeader } from "@/app/components/SiteHeader";
 import { ServiceWorkerRegistration } from "@/app/components/ServiceWorkerRegistration";
 import { ADSENSE_CLIENT, SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/lib/site";
+import { organizationSchema, websiteSchema } from "@/lib/structured-data";
 import "./globals.css";
 
 
@@ -65,6 +66,11 @@ export const metadata: Metadata = {
     apple: [{ url: "/icons/apple-touch-icon.png", sizes: "180x180" }],
   },
   manifest: "/manifest.webmanifest",
+  alternates: {
+    types: {
+      "text/plain": [{ url: "/llms.txt", title: "Resumen para asistentes de IA" }],
+    },
+  },
 };
 
 export const viewport: Viewport = {
@@ -74,19 +80,9 @@ export const viewport: Viewport = {
   colorScheme: "light",
 };
 
-const websiteSchema = {
+const siteGraph = {
   "@context": "https://schema.org",
-  "@type": "WebSite",
-  name: SITE_NAME,
-  url: SITE_URL,
-  description: SITE_TAGLINE,
-  inLanguage: "es-ES",
-  publisher: {
-    "@type": "Organization",
-    name: SITE_NAME,
-    url: SITE_URL,
-    logo: `${SITE_URL}/icons/icon-512.png`,
-  },
+  "@graph": [organizationSchema, websiteSchema],
 };
 
 export default function RootLayout({
@@ -118,7 +114,7 @@ export default function RootLayout({
         <ServiceWorkerRegistration />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(siteGraph) }}
         />
       </body>
     </html>

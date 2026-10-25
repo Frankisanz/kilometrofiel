@@ -25,6 +25,7 @@ export function ContentCard({
         <EditorialImage
           className="content-card-media"
           imageClassName="content-card-image"
+          decorative
           media={media}
           sizes="(max-width: 640px) 100vw, 33vw"
         />
