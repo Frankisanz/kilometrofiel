@@ -69,6 +69,7 @@ export function photoImageObject(media: EditorialMedia) {
     caption: media.alt,
     creditText: `${media.credit.name} / Unsplash`,
     creator: { "@type": "Person", name: media.credit.name, url: media.credit.sourceUrl },
+    copyrightNotice: `© ${media.credit.name}`,
     license: "https://unsplash.com/license",
     acquireLicensePage: media.credit.sourceUrl,
   };

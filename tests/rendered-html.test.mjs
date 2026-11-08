@@ -394,3 +394,19 @@ test("sitemap lists images for guides", async () => {
     /<image:loc>https:\/\/www\.kilometrofiel\.es\/media\/infografias\/olor-a-quemado-coche\.jpg<\/image:loc>/,
   );
 });
+
+test("every licensed ImageObject carries creator and copyrightNotice", async () => {
+  for (const path of [
+    "/mantenimiento/neumaticos-dot-desgaste-presion",
+    "/respuestas/coche-hace-clic-no-arranca-luces-funcionan",
+  ]) {
+    const output = await html(path);
+    const blocks = output.match(/\{"@type":"ImageObject"[^{}]*(\{[^{}]*\}[^{}]*)*\}/g) ?? [];
+    const licensed = blocks.filter((block) => block.includes('"license"'));
+    assert.ok(licensed.length > 0, `${path} declares a licensed image`);
+    for (const block of licensed) {
+      assert.match(block, /"creator":/, `${path} image has creator`);
+      assert.match(block, /"copyrightNotice":/, `${path} image has copyrightNotice`);
+    }
+  }
+});
