@@ -29,6 +29,7 @@ import { editorialArticleFields } from "@/lib/structured-data";
 import type { Article } from "@/lib/articles";
 import { LONG_TAIL_GUIDES } from "@/lib/long-tail-guides";
 import type { CommerceCategoryId } from "@/lib/commerce";
+import { getObdCodesForArticle, obdCodePath } from "@/lib/obd-codes";
 
 type ArticlePageProps = {
   params: Promise<{ section: string; slug: string }>;
@@ -138,6 +139,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     (guide) => guide.hub.slug === article.slug,
   );
   const canonicalPath = articlePath(article);
+  const obdCodes = getObdCodesForArticle(article.slug);
   const categoryLabel = CATEGORY_LABELS[article.category];
   const categoryHref = categoryPath(article.category);
   const commercialCategory = commercialCategoryByArticle[article.slug];
@@ -358,6 +360,28 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                 necesitan un matiz propio.
               </p>
               <LongTailDirectory guides={specificAnswers} />
+            </section>
+          ) : null}
+
+          {obdCodes.length > 0 ? (
+            <section aria-labelledby="codigos-obd">
+              <h2 id="codigos-obd">Códigos OBD2 relacionados</h2>
+              <p>
+                Si has leído un código con un lector OBD2, estas fichas explican
+                qué significa, las causas probables y si puedes circular.
+              </p>
+              <ul>
+                {obdCodes.map((code) => (
+                  <li key={code.slug}>
+                    <Link href={obdCodePath(code)}>
+                      {code.code}: {code.shortName}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+              <p>
+                <Link href="/codigos-averia">Todos los códigos de avería explicados</Link>
+              </p>
             </section>
           ) : null}
 

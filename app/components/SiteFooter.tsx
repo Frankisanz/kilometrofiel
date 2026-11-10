@@ -18,6 +18,7 @@ const footerGroups = [
         label: "Testigos del cuadro",
         href: "/diagnostico/testigos-coche-significado",
       },
+      { label: "Códigos de avería OBD2", href: "/codigos-averia" },
       { label: "Plan de mantenimiento", href: "/herramientas/planificador" },
       { label: "Elegir batería", href: "/herramientas/elegir-bateria" },
       { label: "¿Cuándo me toca la ITV?", href: "/herramientas/calculadora-itv" },

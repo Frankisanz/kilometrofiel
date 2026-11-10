@@ -5,6 +5,7 @@ import {
 } from "@/lib/article-routing";
 import { articles, type ArticleCategory } from "@/lib/articles";
 import { LONG_TAIL_GUIDES } from "@/lib/long-tail-guides";
+import { OBD_CODES, OBD_HUB, OBD_SYSTEM_LABELS, obdCodePath } from "@/lib/obd-codes";
 import { absoluteUrl, SITE_NAME, SITE_TAGLINE } from "@/lib/site";
 
 // Plain-text maps for AI answer engines, following the llms.txt proposal
@@ -80,6 +81,18 @@ export function buildLlmsIndex() {
     );
   }
 
+  lines.push(
+    "",
+    "## Códigos de avería OBD2",
+    "",
+    `- [${OBD_HUB.title}](${absoluteUrl(OBD_HUB.path)}): ${OBD_HUB.description}`,
+  );
+  for (const code of OBD_CODES) {
+    lines.push(
+      `- [${code.code}: ${code.name}](${absoluteUrl(obdCodePath(code))}): causas, si se puede circular y efecto en la ITV.`,
+    );
+  }
+
   lines.push("", "## Herramientas interactivas", "");
   for (const tool of TOOLS) {
     lines.push(`- [${tool.title}](${absoluteUrl(tool.path)}): ${tool.description}`);
@@ -138,6 +151,27 @@ export function buildLlmsFull() {
       "",
     );
     for (const faq of guide.faqs) {
+      lines.push(`- ${faq.question} ${faq.answer}`);
+    }
+  }
+
+  lines.push("", `## Códigos de avería OBD2 (${absoluteUrl(OBD_HUB.path)})`);
+  for (const code of OBD_CODES) {
+    lines.push(
+      "",
+      `### ${code.code}: ${code.name}`,
+      "",
+      `URL: ${absoluteUrl(obdCodePath(code))}`,
+      `Sistema: ${OBD_SYSTEM_LABELS[code.system]}. Urgencia: ${code.severity}.`,
+      `Actualizado: ${code.updatedAt}`,
+      "",
+      code.directAnswer,
+      "",
+      `- Causas probables: ${code.causes.map((item) => item.cause.toLowerCase()).join("; ")}.`,
+      `- ¿Se puede circular? ${code.canDrive}`,
+      `- ITV: ${code.itv}`,
+    );
+    for (const faq of code.faqs) {
       lines.push(`- ${faq.question} ${faq.answer}`);
     }
   }
