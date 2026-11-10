@@ -2153,3 +2153,185 @@ fieldset.field {
   color: var(--steel-dark);
   font-size: 0.9rem;
 }
+
+/* Códigos de avería OBD2 */
+.obd-finder {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.obd-finder-label {
+  font-weight: 700;
+}
+
+.obd-finder-input {
+  width: 100%;
+  max-width: 32rem;
+  padding: 0.85rem 1rem;
+  border: 2px solid var(--steel-dark);
+  border-radius: var(--radius-sm);
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+}
+
+.obd-finder-input:focus-visible {
+  outline: 3px solid var(--orange);
+  outline-offset: 2px;
+}
+
+.obd-finder-count {
+  margin: 0;
+  color: var(--steel-dark);
+}
+
+.obd-list {
+  display: grid;
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.obd-list li[hidden] {
+  display: none;
+}
+
+.obd-item {
+  display: grid;
+  grid-template-columns: 7.5rem 1fr auto;
+  gap: 1rem;
+  align-items: center;
+  padding: 0.9rem 1.1rem;
+  border: 1px solid var(--steel);
+  border-radius: var(--radius-sm);
+  background: var(--paper);
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.obd-item:hover,
+.obd-item:focus-visible {
+  border-color: var(--petrol);
+  box-shadow: var(--shadow);
+}
+
+.obd-code {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--petrol);
+}
+
+.obd-item-text {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.obd-item-text span {
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+}
+
+.obd-severity {
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.obd-severity-alta {
+  background: #f9dcd5;
+  color: var(--danger);
+}
+
+.obd-severity-media {
+  background: var(--warning);
+  color: #5b4500;
+}
+
+.obd-severity-baja {
+  background: #e8f0ec;
+  color: var(--success);
+}
+
+.obd-facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 0.75rem;
+  margin-block: 1.5rem;
+}
+
+.obd-facts div {
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--steel);
+  border-radius: var(--radius-sm);
+  background: var(--paper);
+}
+
+.obd-facts dt {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--steel-dark);
+}
+
+.obd-facts dd {
+  margin: 0.3rem 0 0;
+}
+
+.obd-facts .obd-severity {
+  display: inline-block;
+  white-space: normal;
+}
+
+.article-body .obd-list {
+  padding-left: 0;
+}
+
+.obd-causes {
+  width: 100%;
+  border-collapse: collapse;
+  margin-block: 1rem;
+}
+
+.obd-causes th,
+.obd-causes td {
+  padding: 0.7rem 0.6rem;
+  border-bottom: 1px solid var(--steel);
+  text-align: left;
+  vertical-align: top;
+}
+
+.obd-causes th {
+  font-size: 0.85rem;
+  color: var(--steel-dark);
+}
+
+@media (max-width: 640px) {
+  .obd-item {
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+  }
+
+  .obd-severity {
+    justify-self: start;
+  }
+
+  .obd-causes thead {
+    display: none;
+  }
+
+  .obd-causes tr {
+    display: grid;
+    padding-block: 0.5rem;
+    border-bottom: 1px solid var(--steel);
+  }
+
+  .obd-causes td {
+    padding: 0.2rem 0;
+    border: 0;
+  }
+}

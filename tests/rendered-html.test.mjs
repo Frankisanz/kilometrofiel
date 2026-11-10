@@ -235,7 +235,7 @@ test("sitemap exposes every indexable page and internal links resolve", async ()
   const pageUrls = [...sitemap.matchAll(/<loc>(https:\/\/www\.kilometrofiel\.es[^<]*)<\/loc>/g)]
     .map((match) => new URL(match[1]));
 
-  assert.equal(pageUrls.length, 77);
+  assert.equal(pageUrls.length, 102);
 
   const internalPaths = new Set(["/"]);
   for (const url of pageUrls) {
@@ -409,4 +409,39 @@ test("every licensed ImageObject carries creator and copyrightNotice", async () 
       assert.match(block, /"copyrightNotice":/, `${path} image has copyrightNotice`);
     }
   }
+});
+
+test("renders the OBD2 trouble code hub and code pages with structured data", async () => {
+  const hub = await html("/codigos-averia");
+  assert.match(hub, /<h1>Códigos de avería OBD2 explicados/i);
+  assert.match(hub, /"@type":"DefinedTermSet"/);
+  assert.match(hub, /href="\/codigos-averia\/p0420"/);
+  assert.match(hub, /href="\/codigos-averia\/u0100"/);
+
+  const page = await html("/codigos-averia/p0420");
+  assert.match(page, /<h1>Código P0420: catalizador poco eficiente<\/h1>/i);
+  assert.match(page, /rel="canonical"[^>]*href="https:\/\/www\.kilometrofiel\.es\/codigos-averia\/p0420"/i);
+  assert.match(page, /"@type":"TechArticle"/);
+  assert.match(page, /"@type":"DefinedTerm"/);
+  assert.match(page, /"@type":"FAQPage"/);
+  assert.match(page, /¿Se puede circular con el código P0420\?/);
+  assert.match(page, /href="\/itv-y-normativa\/checklist-itv-coche-antiguo"/);
+
+  const guide = await html("/diagnostico/tirones-al-acelerar-fallo-encendido");
+  assert.match(guide, /href="\/codigos-averia\/p0300"/);
+
+  const footer = await html("/contacto");
+  assert.match(footer, /href="\/codigos-averia"/);
+
+  const missing = await request("/codigos-averia/p9999");
+  assert.equal(missing.status, 404);
+});
+
+test("llms files list the OBD2 code pages", async () => {
+  const index = await (await request("/llms.txt")).text();
+  assert.match(index, /## Códigos de avería OBD2/);
+  assert.match(index, /https:\/\/www\.kilometrofiel\.es\/codigos-averia\/p0171/);
+  const full = await (await request("/llms-full.txt")).text();
+  assert.match(full, /### P2463: Filtro de partículas diésel: acumulación de hollín/);
+  assert.match(full, /¿Se puede circular\?/);
 });

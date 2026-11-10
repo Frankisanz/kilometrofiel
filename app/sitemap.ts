@@ -6,6 +6,7 @@ import { LONG_TAIL_GUIDES } from "@/lib/long-tail-guides";
 import { SITE_URL } from "@/lib/site";
 import { getArticleMedia } from "@/lib/editorial-media";
 import { getInfographic } from "@/lib/infographics";
+import { OBD_CODES, OBD_HUB, obdCodePath } from "@/lib/obd-codes";
 
 const staticRoutes = [
   "",
@@ -56,6 +57,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const allDates = [
     ...articles.map((article) => article.updatedAt),
     ...LONG_TAIL_GUIDES.map((guide) => guide.updatedAt),
+    ...OBD_CODES.map((code) => code.updatedAt),
   ];
 
   function routeDate(route: string) {
@@ -90,6 +92,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.8,
       images: articleImages(article.slug, article.category),
+    })),
+    {
+      url: `${SITE_URL}${OBD_HUB.path}`,
+      lastModified: latest(OBD_CODES.map((code) => code.updatedAt)),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+      images: [`${SITE_URL}${getArticleMedia("testigos-coche-significado").src}`],
+    },
+    ...OBD_CODES.map((code) => ({
+      url: `${SITE_URL}${obdCodePath(code)}`,
+      lastModified: new Date(`${code.updatedAt}T00:00:00.000Z`),
+      changeFrequency: "monthly" as const,
+      priority: 0.75,
     })),
     ...LONG_TAIL_GUIDES.map((guide) => ({
       url: `${SITE_URL}${longTailPath(guide)}`,
