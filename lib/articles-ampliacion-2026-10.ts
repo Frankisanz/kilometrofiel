@@ -1996,10 +1996,10 @@ export const october2026Articles: readonly Article[] = [
       },
     ],
     relatedSlugs: [
+      "cambio-titularidad-coche-segunda-mano",
       "coche-parado-mucho-tiempo",
       "etiqueta-ambiental-coche-antiguo",
       "itv-caducada-que-hacer",
-      "mantenimiento-coche-10-15-20-anos",
     ],
     sources: [
       sources.permanentDeregistration,

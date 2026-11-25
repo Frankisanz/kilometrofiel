@@ -1,4 +1,5 @@
 import { OCTOBER_2026_LONG_TAIL_GUIDES } from "@/lib/long-tail-guides-2026-10";
+import { NOVEMBER_2026_LONG_TAIL_GUIDES } from "@/lib/long-tail-guides-2026-11";
 
 export type LongTailGuide = {
   slug: string;
@@ -1017,6 +1018,7 @@ const BASE_LONG_TAIL_GUIDES = [
 export const LONG_TAIL_GUIDES: readonly LongTailGuide[] = [
   ...BASE_LONG_TAIL_GUIDES,
   ...OCTOBER_2026_LONG_TAIL_GUIDES,
+  ...NOVEMBER_2026_LONG_TAIL_GUIDES,
 ];
 
 export function getLongTailGuide(

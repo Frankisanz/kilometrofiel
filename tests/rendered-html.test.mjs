@@ -235,7 +235,7 @@ test("sitemap exposes every indexable page and internal links resolve", async ()
   const pageUrls = [...sitemap.matchAll(/<loc>(https:\/\/www\.kilometrofiel\.es[^<]*)<\/loc>/g)]
     .map((match) => new URL(match[1]));
 
-  assert.equal(pageUrls.length, 102);
+  assert.equal(pageUrls.length, 109);
 
   const internalPaths = new Set(["/"]);
   for (const url of pageUrls) {

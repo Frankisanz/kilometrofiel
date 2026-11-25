@@ -17,6 +17,7 @@ const OUT_DIR = join(process.cwd(), "public", "media", "infografias");
 const TONES = {
   red: { bg: "#842f25", fg: "#fffdf8", dot: "#ff8a73" },
   amber: { bg: "#fff0b9", fg: "#14201c", dot: "#e0a400" },
+  orange: { bg: "#f2a65a", fg: "#14201c", dot: "#8a3f0c" },
   green: { bg: "#245f3d", fg: "#fffdf8", dot: "#d9ff67" },
   petrol: { bg: "#163d35", fg: "#fffdf8", dot: "#d9ff67" },
   steel: { bg: "#cbd2cc", fg: "#14201c", dot: "#526059" },
