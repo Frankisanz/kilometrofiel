@@ -71,6 +71,7 @@ export interface Article {
 import { itvAndMaintenanceArticles } from "@/lib/articles-itv-mantenimiento";
 import { october2026Articles } from "@/lib/articles-ampliacion-2026-10";
 import { symptomsAndBuyingArticles } from "@/lib/articles-sintomas-compra-2026-10";
+import { winterAndPaperworkArticles } from "@/lib/articles-invierno-tramites-2026-11";
 
 const SOURCE_ACCESSED_AT = "2026-07-29";
 
@@ -2465,8 +2466,8 @@ export const articles: readonly Article[] = [
     relatedSlugs: [
       "checklist-itv-coche-antiguo",
       "mantenimiento-coche-10-15-20-anos",
-      "testigos-coche-significado",
-      "baliza-v16-conectada-certificada",
+      "testigo-presion-neumaticos-tpms",
+      "nieve-cadenas-neumaticos-invierno-niveles-dgt",
     ],
     sources: [sources.tyres, sources.tyreCondition, sources.itvManual],
     publishedAt: "2026-07-29",
@@ -2628,6 +2629,7 @@ export const articles: readonly Article[] = [
   ...itvAndMaintenanceArticles,
   ...october2026Articles,
   ...symptomsAndBuyingArticles,
+  ...winterAndPaperworkArticles,
 ];
 
 export function getArticleBySlug(slug: string): Article | undefined {

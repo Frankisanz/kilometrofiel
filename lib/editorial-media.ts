@@ -91,6 +91,8 @@ const tireArticleSlugs = new Set([
   "checklist-itv-coche-antiguo",
   "neumaticos-dot-desgaste-presion",
   "baliza-v16-conectada-certificada",
+  "nieve-cadenas-neumaticos-invierno-niveles-dgt",
+  "testigo-presion-neumaticos-tpms",
 ]);
 
 const dashboardArticleSlugs = new Set([

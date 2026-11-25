@@ -1137,8 +1137,8 @@ export const symptomsAndBuyingArticles: readonly Article[] = [
       },
     ],
     relatedSlugs: [
+      "cambio-titularidad-coche-segunda-mano",
       "vender-o-dar-de-baja-coche-viejo",
-      "itv-caducada-que-hacer",
       "correa-distribucion-cuando-cambiar",
       "como-elegir-lector-obd2",
     ],

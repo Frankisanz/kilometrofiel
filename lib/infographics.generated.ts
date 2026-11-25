@@ -64,5 +64,15 @@ export const INFOGRAPHIC_ENTRIES = [
     "slug": "comprar-coche-segunda-mano-que-revisar",
     "title": "Cinco pasos antes de pagar un coche de segunda mano",
     "alt": "Infografía con cinco pasos para comprar un coche de segunda mano: informe de la DGT, papeles y facturas, prueba y revisión, contrato y cambio de titular en 30 días"
+  },
+  {
+    "slug": "nieve-cadenas-neumaticos-invierno-niveles-dgt",
+    "title": "Qué significa cada color del estado de la vía",
+    "alt": "Infografía de los estados de la carretera por nieve de la DGT: amarillo afectado, naranja dificultado sin pesados, rojo adverso solo turismos con cadenas o neumáticos de invierno y negro vía cortada"
+  },
+  {
+    "slug": "cambio-titularidad-coche-segunda-mano",
+    "title": "Qué parte del precio medio de Hacienda tributa según la edad",
+    "alt": "Tabla del porcentaje del precio medio de Hacienda que tributa en el ITP de un coche usado según su antigüedad: 100 % hasta un año, 67 % de dos a tres, 47 % de cuatro a cinco, 34 % de seis a siete, 19 % de nueve a diez y 10 % con más de doce años"
   }
 ] as const;
